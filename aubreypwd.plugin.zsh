@@ -6,7 +6,7 @@
  # @since Saturday, June 8th 2019
  ##
 
-loadfrom="$HOME/.config/symlinked/zshrc/aubreypwd"
+loadfrom="$HOME/.config/symlinked/zshrc/plugins/aubreypwd"
 
 ###
  # Install
