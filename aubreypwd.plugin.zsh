@@ -47,7 +47,7 @@ function install-homebrew {
  #
  # @since Sun June 9th 2019
  ##
-function require {
+function require-cmd {
 	cmd="$1"
 	install="$2"
 
@@ -57,15 +57,15 @@ function require {
 	fi
 }
 
-require "brew" "install-homebrew"
-require "ffmpeg" "brew install ffmpeg"
-require "git" "brew install git"
-require "svn" "brew install subversion"
-require "trash" "brew install trash-cli"
-require "trash-empty" "brew install trash-cli"
-require "wp" "brew install wp-cli"
-require "youtube-dl" "brew install youtube-dl"
-require "composer" "brew install composer"
+require-cmd "brew" "install-homebrew"
+require-cmd "ffmpeg" "brew install ffmpeg"
+require-cmd "git" "brew install git"
+require-cmd "svn" "brew install subversion"
+require-cmd "trash" "brew install trash-cli"
+require-cmd "trash-empty" "brew install trash-cli"
+require-cmd "wp" "brew install wp-cli"
+require-cmd "youtube-dl" "brew install youtube-dl"
+require-cmd "composer" "brew install composer"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
