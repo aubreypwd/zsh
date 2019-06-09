@@ -73,3 +73,5 @@ source "$loadfrom/wp.zsh"
 source "$loadfrom/files.zsh"
 source "$loadfrom/svn.zsh"
 source "$loadfrom/misc.zsh"
+
+echo "aubreypwd/zsh Loaded!"
