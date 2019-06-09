@@ -1,0 +1,11 @@
+{
+    "name": "aubreypwd/zsh",
+    "description": "My custom ZSH plugin",
+    "authors": [
+        {
+            "name": "Aubrey Portwood",
+            "email": "code@aubreypwd.com"
+        }
+    ],
+    "require": {}
+}
