@@ -20,11 +20,6 @@ function install {
 	# brew install git wp-cli trash git ffmpeg
 }
 
-###
- # Reload ZSH Config
- #
- # @since Saturday, June 8th 2019
- ##
 function reload {
 	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
 }
@@ -66,12 +61,16 @@ require-cmd "trash-empty" "brew install trash-cli"
 require-cmd "wp" "brew install wp-cli"
 require-cmd "youtube-dl" "brew install youtube-dl"
 require-cmd "composer" "brew install composer"
+require-cmd "hcl" "sudo gem install hcl"
+require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
 source "$loadfrom/wp.zsh"
 source "$loadfrom/files.zsh"
 source "$loadfrom/svn.zsh"
-source "$loadfrom/misc.zsh"
+source "$loadfrom/date.zsh"
+source "$loadfrom/hcl.zsh"
+source "$loadfrom/slack.zsh"
 
 echo "aubreypwd/zsh Loaded!"
