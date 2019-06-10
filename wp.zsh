@@ -12,12 +12,12 @@
  # @since 6/21/16
  ##
 function wp-debug {
-	if [ '--help' == "$1" ]; then
+	if [ '--help' = "$1" ]; then
 		echo "Usage: wp-debug [--reset]"
 		return;
 	fi
 
-	if [ '--reset' == "$1" ]; then
+	if [ '--reset' = "$1" ]; then
 		if [ -e ./debug.log ]; then
 
 			# Delete the debug.log file first.
@@ -66,7 +66,7 @@ function wp-make-patch {
  # @since Wednesday, April 17, 2019
  ##
 function wp-db-pass {
-	if [ "" == "$1" ]; then
+	if [ "" = "$1" ]; then
 		table="wp_users";
 	else
 		table="$1_users"

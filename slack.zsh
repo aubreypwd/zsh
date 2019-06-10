@@ -76,7 +76,7 @@ function dnd {
  ##
 function off {
 	slack presence away
-	slack status edit --text "$1" --emoji ""
+	slack status edit --text "" --emoji ""
 	slack chat send --text ":wave: Signing off for the day!" '#general'
 	hcl stop
 }
