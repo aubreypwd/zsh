@@ -67,3 +67,15 @@ function off {
 	slack chat send --text ":wave: Signing off for the day!" '#general'
 	hcl stop
 }
+
+###
+ # Working on Something
+ #
+ # E.g: working
+ #
+ # @since 06-10-2019
+ ##
+function working {
+	slack presence active
+	slack status edit --text "Working $1" --emoji ":computer:"
+}
