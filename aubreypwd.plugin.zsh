@@ -25,6 +25,17 @@ function reload {
 }
 
 ###
+ # Exit
+ #
+ # E.g: x
+ #
+ # @since 06-09-2019
+ ##
+function x {
+	exit
+}
+
+###
  # Install Homebrew
  #
  # E.g: install-homebrew
