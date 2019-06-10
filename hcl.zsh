@@ -23,22 +23,6 @@ function morning {
 }
 
 ###
- # Away from Keyboard
- #
- # E.g: afk
- #
- # @since 06-09-2019
- ##
-function afk {
-	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
-	hcl start @tmp
-	hcl note "AFK $1"
-	hcl unalias tmp
-	slack presence away
-	slack status edit --text "AFK $1" --emoji ":brb:"
-}
-
-###
  # Working on Computer
  #
  # E.g: computer

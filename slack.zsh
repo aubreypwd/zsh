@@ -31,6 +31,19 @@ function back {
 }
 
 ###
+ # Away from Keyboard
+ #
+ # E.g: afk
+ #
+ # @since 06-09-2019
+ ##
+function afk {
+	slack presence away
+	slack status edit --text "AFK $1" --emoji ":brb:"
+	slack chat send --text "AFK $1 :brb:" '#general'
+}
+
+###
  # I'm Working
  #
  # E.g: working [On what...]
