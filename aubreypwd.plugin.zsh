@@ -26,7 +26,7 @@ function install {
  # @since Saturday, June 8th 2019
  ##
 function reload {
-	source "$HOME/.config/symlinked/zshrc/aubreypwd/aubreypwd.plugin.zsh" && echo "Reloaded"
+	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
 }
 
 ###
