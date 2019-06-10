@@ -53,3 +53,16 @@ function dnd {
 	slack presence away
 	slack status edit --text "Do not distrub." --emoji ":computer:"
 }
+
+###
+ # Offline (Sign Off)
+ #
+ # E.g: off [Offline Message]
+ #
+ # @since 06-09-2019
+ ##
+function off {
+	slack presence away
+	slack status edit --text "$1" --emoji ""
+	slack chat send --text ":wave: Signing off for the day!" '#general'
+}
