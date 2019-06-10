@@ -20,6 +20,13 @@ function install {
 	# brew install git wp-cli trash git ffmpeg
 }
 
+###
+ # Reload Config
+ #
+ # E.g: reload
+ #
+ # @since 06-09-2019
+ ##
 function reload {
 	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
 }
