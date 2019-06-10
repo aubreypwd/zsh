@@ -6,16 +6,50 @@
  # @since 06-09-2019 05-43PM
  ##
 
+###
+ # Slack: Here
+ #
+ # E.g:here
+ #
+ # @since 06-09-2019
+ ##
 function here {
 	slack presence active
-	slack status edit ""
+	slack status edit "" --emoji ""
 }
 
+###
+ # I'm Back
+ #
+ # E.g: back
+ #
+ # @since 06-09-2019
+ ##
 function back {
 	here
+	slack chat send --text ":back:" '#general'
 }
 
+###
+ # I'm Working
+ #
+ # E.g: working [On what...]
+ #
+ # @since 06-09-2019
+ ##
 function working {
 	slack presence active
-	slack status edit "Working ($1), response may be delayed." :computer:
+	slack status edit --text "Working ($1), response may be delayed." --emoji ":computer:"
+}
+
+###
+ # Do not disturb.
+ #
+ # E.g: dnd
+ #
+ # @since 06-09-2019
+ ##
+function dnd {
+	slack presence away
+	slack status edit --text "Do not distrub." --emoji ":computer:"
 }
