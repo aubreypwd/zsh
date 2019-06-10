@@ -65,4 +65,5 @@ function off {
 	slack presence away
 	slack status edit --text "$1" --emoji ""
 	slack chat send --text ":wave: Signing off for the day!" '#general'
+	hcl stop
 }
