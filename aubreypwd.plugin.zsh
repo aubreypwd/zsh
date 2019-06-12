@@ -81,6 +81,7 @@ require-cmd "youtube-dl" "brew install youtube-dl"
 require-cmd "composer" "brew install composer"
 require-cmd "hcl" "sudo gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
+require-cmd "fzf" "brew install fzf"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
