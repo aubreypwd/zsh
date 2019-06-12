@@ -90,3 +90,16 @@ function git-delete-tag {
 	git tag -d "$1"
 	git push origin :refs/tags/"$1"
 }
+
+###
+ # Checkout a branch fuzzily.
+ #
+ # @since 5/15/17
+ ##
+function branch {
+	local branches branch
+	branches=$(git branch -a) &&
+	branch=$(echo "$branches" | fzf +s +m -e) &&
+	cmd=$(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+	git checkout "$cmd"
+}
