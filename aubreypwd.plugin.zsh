@@ -93,5 +93,6 @@ source "$loadfrom/hcl.zsh"
 source "$loadfrom/slack.zsh"
 source "$loadfrom/web-search.zsh"
 source "$loadfrom/ssh.zsh"
+source "$loadfrom/macos.zsh"
 
 echo "aubreypwd/zsh Loaded!"
