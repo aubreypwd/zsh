@@ -31,8 +31,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write com.apple.TextEdit SmartQuotes -bool false
 defaults write com.apple.TextEdit SmartDashes -bool false
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-defaults write com.dteoh.SlowQuitApps invertList -bool YES
-defaults write com.dteoh.SlowQuitApps delay -int 1000
+defaults write com.dteoh.SlowQuitApps invertList -bool YES # Make whitelist a blacklist
+defaults write com.dteoh.SlowQuitApps delay -int 1000 # On whitelisted apps, quit after 3 seconds
 
 # Done
 echo "MacOS default flags configured, you may need to restart!"
