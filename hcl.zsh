@@ -20,6 +20,7 @@ function morning {
 	hcl unalias tmp
 	slack presence active
 	slack status edit --text "Morning Chores $1" --emoji ":sunny:"
+	slack chat send --text "Morning! :coffee: :cactus: :sunny: :wave:" '#general'
 }
 
 ###
