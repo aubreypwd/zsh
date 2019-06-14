@@ -28,16 +28,21 @@ function here {
 function back {
 	here
 	slack chat send --text ":back:" '#general'
+	hcl stop
 }
 
 ###
  # Away from Keyboard
  #
- # E.g: afk
+ # E.g: afk [Why...]
  #
  # @since 06-09-2019
  ##
 function afk {
+	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
+	hcl start @tmp
+	hcl note "AFK (Coffee, small break, etc) $1"
+	hcl unalias tmp
 	slack presence away
 	slack status edit --text "AFK $1" --emoji ":brb:"
 	slack chat send --text "AFK $1 :brb:" '#general'
@@ -58,13 +63,13 @@ function working {
 ###
  # Do not disturb.
  #
- # E.g: dnd
+ # E.g: dnd [Why...]
  #
  # @since 06-09-2019
  ##
 function dnd {
 	slack presence away
-	slack status edit --text "Do not distrub." --emoji ":computer:"
+	slack status edit --text "Do not distrub ($1)." --emoji ":computer:"
 }
 
 ###
@@ -79,16 +84,4 @@ function off {
 	slack status edit --text "" --emoji ""
 	slack chat send --text ":wave: Signing off for the day!" '#general'
 	hcl stop
-}
-
-###
- # Working on Something
- #
- # E.g: working
- #
- # @since 06-10-2019
- ##
-function working {
-	slack presence active
-	slack status edit --text "Working $1" --emoji ":computer:"
 }
