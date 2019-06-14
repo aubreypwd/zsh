@@ -28,6 +28,10 @@ function install {
  # @since 06-09-2019
  ##
 function reload {
+	if [ "menubar" = "$1" ]; then
+		killall -KILL SystemUIServer
+	fi
+
 	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
 }
 
@@ -40,6 +44,32 @@ function reload {
  ##
 function x {
 	exit
+}
+
+###
+ # Maybe x
+ #
+ # E.g: maybe-x x
+ #
+ # But mostly used in commands that should exit right after, e.g.:
+ #
+ #    function test {
+ #        echo "I am a script"
+ #        maybe-x "$@"
+ #    }
+ #
+ # So, when they enter:
+ #
+ #     test x
+ #
+ # ...it will echo out the string, then immediately exit.
+ #
+ # @since 06-09-2019
+ ##
+function maybe-x {
+	if [ 'x' = "$1" ]; then
+		exit
+	fi
 }
 
 ###
@@ -82,6 +112,7 @@ require-cmd "composer" "brew install composer"
 require-cmd "hcl" "sudo gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
 require-cmd "fzf" "brew install fzf"
+require-cmd "nativefier" "brew install nativefier"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
@@ -94,5 +125,6 @@ source "$loadfrom/slack.zsh"
 source "$loadfrom/web-search.zsh"
 source "$loadfrom/ssh.zsh"
 source "$loadfrom/macos.zsh"
+source "$loadfrom/nativefier.zsh"
 
 echo "aubreypwd/zsh Loaded!"

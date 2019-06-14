@@ -9,49 +9,49 @@
 ###
  # Slack: Here
  #
- # E.g:here
+ # E.g: here [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
 function here {
 	slack presence active
-	slack status edit "" --emoji ""
+	slack status clear
 }
 
 ###
  # I'm Back
  #
- # E.g: back
+ # E.g: back [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
 function back {
 	here
-	slack chat send --text ":back:" '#general'
 	hcl stop
 }
 
 ###
  # Away from Keyboard
  #
- # E.g: afk [Why...]
+ # E.g: afk [Why...] [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
 function afk {
 	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
 	hcl start @tmp
+
 	hcl note "AFK (Coffee, small break, etc) $1"
 	hcl unalias tmp
 	slack presence away
+
 	slack status edit --text "AFK $1" --emoji ":brb:"
-	slack chat send --text "AFK $1 :brb:" '#general'
 }
 
 ###
  # I'm Working
  #
- # E.g: working [On what...]
+ # E.g: working [On what...] [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
@@ -63,7 +63,7 @@ function working {
 ###
  # Do not disturb.
  #
- # E.g: dnd [Why...]
+ # E.g: dnd [Why...] [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
@@ -75,7 +75,7 @@ function dnd {
 ###
  # Offline (Sign Off)
  #
- # E.g: off [Offline Message]
+ # E.g: off [Offline Message] [?x (To exit after)]
  #
  # @since 06-09-2019
  ##

@@ -9,7 +9,7 @@
 ###
  # Morning Chores
  #
- # E.g: morning
+ # E.g: morning [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
@@ -26,7 +26,7 @@ function morning {
 ###
  # Working on Computer
  #
- # E.g: computer
+ # E.g: computer [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
@@ -41,7 +41,7 @@ function computer {
 ###
  # On a Call
  #
- # E.g: call
+ # E.g: call [?x (To exit after)]
  #
  # @since 06-09-2019
  ##
