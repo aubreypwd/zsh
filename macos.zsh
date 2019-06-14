@@ -30,9 +30,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write com.apple.TextEdit SmartQuotes -bool false
 defaults write com.apple.TextEdit SmartDashes -bool false
-defaults write NSGlobalDomain KeyRepeat -int 0
-defaults write NSGlobalDomain InitialKeyRepeat -int 1
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.dteoh.SlowQuitApps invertList -bool YES
+defaults write com.dteoh.SlowQuitApps delay -int 1000
 
 # Done
 echo "MacOS default flags configured, you may need to restart!"
