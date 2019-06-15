@@ -47,6 +47,17 @@ function x {
 }
 
 ###
+ # An easy way to get $HOME
+ #
+ # E.g: home
+ #
+ # @since 6/15/2019
+ ##
+function home {
+	cd "$HOME"
+}
+
+###
  # Maybe x
  #
  # E.g: maybe-x x
