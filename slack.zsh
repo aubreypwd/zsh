@@ -57,6 +57,12 @@ function afk {
  ##
 function working {
 	slack presence active
+
+	if [ "" = "$1" ]; then
+		echo "On what, e.g. working \"Making a really awesome thing.\" (don't worry about the word on)?"
+		return
+	fi
+
 	slack status edit --text "Working on ($1), response will be slightly delayed." --emoji ":computer:"
 }
 
