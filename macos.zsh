@@ -18,6 +18,12 @@ fi
 # Don't update this again.
 echo "$thisfile_current_contents" > "$flagfile"
 
+screenshots_dir="$HOME/Screenshots"
+
+if [ ! -e "$screenshots_dir" ]; then
+	mkdir "$screenshots_dir"
+fi
+
 ###
  # Default Flags
  #
@@ -33,6 +39,7 @@ defaults write com.apple.TextEdit SmartDashes -bool false
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.dteoh.SlowQuitApps invertList -bool YES # Make whitelist a blacklist
 defaults write com.dteoh.SlowQuitApps delay -int 1000 # On whitelisted apps, quit after 3 seconds
+defaults write com.apple.screencapture location "$screenshots_dir"
 
 # Done
 echo "MacOS default flags configured, you may need to restart!"
