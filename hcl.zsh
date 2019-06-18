@@ -39,6 +39,17 @@ function computer {
 }
 
 ###
+ # Add a quick note to current timeer.
+ #
+ # E.g: note ["My note"]
+ #
+ # @since 6/17/2019
+ ##
+function note {
+	hcl note "$1"
+}
+
+###
  # On a Call
  #
  # E.g: call [?x (To exit after)]
