@@ -32,6 +32,28 @@ function wds-git {
 }
 
 ###
+ # Create a new KB Article
+ #
+ # E.g: newkb
+ #
+ # @since 6/16/2019
+ ##
+function newkb {
+	chrome "http://kb.aubreypwd.com/wp-admin/post-new.php"
+}
+
+###
+ # Search KB
+ #
+ # E.g: kb ["Search Query"]
+ #
+ # @since 6/16/2019
+ ##
+function kb {
+	chrome "http://kb.aubreypwd.com/?s=$@"
+}
+
+###
  # Search Google
  #
  # E.g: google "Search"
