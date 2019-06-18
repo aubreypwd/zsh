@@ -9,7 +9,7 @@
 ###
  # Slack: Here
  #
- # E.g: here [?x (To exit after)]
+ # E.g: here
  #
  # @since 06-09-2019
  ##
@@ -21,7 +21,7 @@ function here {
 ###
  # I'm Back
  #
- # E.g: back [?x (To exit after)]
+ # E.g: back
  #
  # @since 06-09-2019
  ##
@@ -33,7 +33,7 @@ function back {
 ###
  # Away from Keyboard
  #
- # E.g: afk [Why...] [?x (To exit after)]
+ # E.g: afk [Why...]
  #
  # @since 06-09-2019
  ##
@@ -41,7 +41,7 @@ function afk {
 	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
 	hcl start @tmp
 
-	hcl note "AFK (Coffee, small break, etc) $1"
+	hcl note "AFK (Coffee, small break, etc) $1."
 	hcl unalias tmp
 	slack presence away
 
@@ -51,37 +51,37 @@ function afk {
 ###
  # I'm Working
  #
- # E.g: working [On what...] [?x (To exit after)]
+ # E.g: working [On what...]
  #
  # @since 06-09-2019
  ##
 function working {
 	slack presence active
-	slack status edit --text "Working ($1), response may be delayed." --emoji ":computer:"
+	slack status edit --text "Working on ($1), response will be slightly delayed." --emoji ":computer:"
 }
 
 ###
  # Do not disturb.
  #
- # E.g: dnd [Why...] [?x (To exit after)]
+ # E.g: dnd [Why: "..."] [How long: "1 hour"]
  #
  # @since 06-09-2019
  ##
 function dnd {
 	slack presence away
-	slack status edit --text "Do not distrub ($1)." --emoji ":computer:"
+	slack status edit --text "Do not disturb $1, responses will be delayed until I'm done." --emoji ":computer:"
 }
 
 ###
  # Offline (Sign Off)
  #
- # E.g: off [Offline Message] [?x (To exit after)]
+ # E.g: off [Offline Message]
  #
  # @since 06-09-2019
  ##
 function off {
 	slack presence away
 	slack status clear
-	slack chat send --text ":wave: Signing off for the day!" '#general'
+	slack chat send --text ":wave: Signing off for the day! $1" '#general'
 	hcl stop
 }
