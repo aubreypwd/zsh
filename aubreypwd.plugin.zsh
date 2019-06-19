@@ -1,5 +1,7 @@
 #!/usr/local/bin/zsh
 
+export LESS="-F -X $LESS" # Don't pager on less.
+
 ###
  # My ZSH Plugin
  #

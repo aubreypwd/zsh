@@ -16,6 +16,11 @@ function install-apps {
 	nativefier -n "Poolside.fm" -i "20170401115748603.png" --flash --width="355" --height="460" "http://www.poolside.fm/mobile/" "$native_install_dir"
 	rm "20170401115748603.png"
 
+	# iHeart Radio
+	aria2c "https://www.androidpolice.com/wp-content/uploads/2017/01/nexus2cee_iheart-radio-round-icon.png"
+	nativefier -n "iHeart Radio" -i "nexus2cee_iheart-radio-round-icon.png" --flash --internal-urls "(.*?)(facebook\.com|www\.facebook\.com/|www.iheart\.com)(.*?)" "https://www.iheart.com/my/stations/" "$native_install_dir"
+	rm "nexus2cee_iheart-radio-round-icon.png"
+
 	touch "$installed_file" # Flagged as installed.
 	echo "Done!"
 }
