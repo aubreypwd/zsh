@@ -11,7 +11,7 @@
  #
  # @since 6/21/16
  ##
-function wp-debug {
+function debug {
 	if [ '--help' = "$1" ]; then
 		echo "Usage: wp-debug [--reset]"
 		return;
@@ -32,8 +32,7 @@ function wp-debug {
 		touch "debug.log"
 	fi
 
-	clear
-	tail -n "$LINES" -f "debug.log"
+	clear && rainbow --red="error|Fatal|fatal|Error|PHP\s Fatal|WordPress\sdatabase\serror" --yellow="warning|PHP\sWarning|PHP\sNotice" --magenta="line\s[0-9]+" --green="\/Users\/.*\.php" --blue="^\[.*\]" tail -f debug.log
 }
 
 ###
