@@ -6,7 +6,9 @@
  # @since 06-10-2019
  ##
 
-ssh-add -q -A
-ssh-add -q -K
+# Add keys in keychain...
+ssh-add -q -A >/dev/null 2>&1
+ssh-add -q -K >/dev/null 2>&1
 
-ssh-add -q "$HOME/.ssh/id_rsa-bitbucket"
+# Add Keys...
+ssh-add -q "$HOME/.ssh/id_rsa-bitbucket" >/dev/null 2>&1
