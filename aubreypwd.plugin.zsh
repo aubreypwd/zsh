@@ -1,6 +1,7 @@
 #!/usr/local/bin/zsh
 
 export LESS="-F -X $LESS" # Don't pager on less.
+touch "$HOME/.hushlogin" # Don't show last login message anymore.
 
 ###
  # My ZSH Plugin
@@ -35,6 +36,17 @@ function reload {
 	fi
 
 	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
+}
+
+###
+ # A way to detect if I was loaded.
+ #
+ # E.g: loaded
+ #
+ # @since 6/20/2019
+ ##
+function loaded {
+	echo "Loaded!"
 }
 
 ###
@@ -126,6 +138,7 @@ require-cmd "hcl" "sudo gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
 require-cmd "fzf" "brew install fzf"
 require-cmd "nativefier" "brew install nativefier"
+require-cmd "rainbow" "brew install python && sudo easy_install rainbow"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
@@ -139,5 +152,4 @@ source "$loadfrom/web-search.zsh"
 source "$loadfrom/ssh.zsh"
 source "$loadfrom/macos.zsh"
 source "$loadfrom/nativefier.zsh"
-
-echo "aubreypwd/zsh Loaded!"
+source "$loadfrom/services.zsh"
