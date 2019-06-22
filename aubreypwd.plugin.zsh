@@ -1,6 +1,10 @@
 #!/usr/local/bin/zsh
 
+# sudo scutil --set HostName Bones
+
 export LESS="-F -X $LESS" # Don't pager on less.
+export MANPAGER='ul | cat -s'
+
 touch "$HOME/.hushlogin" # Don't show last login message anymore.
 
 ###
@@ -90,6 +94,8 @@ function home {
  # ...it will echo out the string, then immediately exit.
  #
  # @since 06-09-2019
+ #
+ # @TODO Remove this guy, not using anymore.
  ##
 function maybe-x {
 	if [ 'x' = "$1" ]; then
@@ -138,7 +144,7 @@ require-cmd "hcl" "sudo gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
 require-cmd "fzf" "brew install fzf"
 require-cmd "nativefier" "brew install nativefier"
-require-cmd "rainbow" "brew install python && sudo easy_install rainbow"
+require-cmd "rainbow" "brew install python && sudo easy_install rainbow" # Colorize less.
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"

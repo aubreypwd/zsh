@@ -17,6 +17,12 @@ function s {
 		fi
 	fi
 
+	# s r all
+	if [ "all" = "$3" ]; then
+		brew services restart --all
+		return;
+	fi
+
 	if [ "db" = "$1" ]; then
 		if [ "start" = "$2" ]; then
 			brew services start mysql@5.7

@@ -103,3 +103,45 @@ function youtube-mp3 {
 	youtube-dl --extract-audio --audio-format mp3 "$1"
 }
 
+###
+ # Fuzzy find directories (recursive).
+ #
+ # dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]
+ #
+ # @since 6/20/2019
+ ##
+function dir {
+	help="dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]";
+
+	if [ '--help' = "$1" ]; then
+		echo "$help" && return
+	fi
+
+	depth=""
+	pwd=$(pwd)
+	dir="$1"
+
+	if [ -z "$1" ]; then
+		dir="."
+	fi
+
+	if [ -n "$2" ]; then
+		depth="-maxdepth $2"
+	else
+		depth=""
+	fi
+
+	cd "$dir" || return
+
+	thedir=$(find . -path ./.git -prune -o -type d $depth -print 2> /dev/null | fzf +m)
+
+	if [ -z "$thedir" ]; then
+		cd "$pwd" && return
+	fi
+
+	cd "$thedir" || return
+
+	if [ -e "wp-content" ]; then
+		cd "wp-content" || return
+	fi
+}
