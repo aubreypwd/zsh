@@ -18,7 +18,7 @@ function install-app-get-icon {
 	echo "$out"
 }
 
-function install-apps {
+function install-natified-apps {
 
 	## tlk.io
 	nativefier -n "tlk.io" -i $(install-app-get-icon 'https://img.icons8.com/cotton/2x/filled-chat.png') --flash --width="500" "https://tlk.io/aubreypwd" "$native_install_dir"
@@ -40,6 +40,6 @@ if [ ! -e "$installed_file" ]; then
 	install-apps
 fi
 
-function update-apps {
+function update-natified-apps {
 	install-apps
 }
