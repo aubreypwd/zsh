@@ -41,7 +41,7 @@ function afk {
 	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
 	hcl start @tmp
 
-	hcl note "AFK (Coffee, small break, etc) $1."
+	hcl note "AFK $1."
 	hcl unalias tmp
 	slack presence away
 
@@ -57,13 +57,7 @@ function afk {
  ##
 function working {
 	slack presence active
-
-	if [ "" = "$1" ]; then
-		echo "On what, e.g. working \"Making a really awesome thing.\" (don't worry about the word on)?"
-		return
-	fi
-
-	slack status edit --text "Working on ($1), response will be slightly delayed." --emoji ":computer:"
+	slack status edit --text "Working $1, response may be slightly delayed." --emoji ":computer:"
 }
 
 ###
@@ -78,6 +72,34 @@ function dnd {
 	slack status edit --text "Do not disturb $1, responses will be delayed until I'm done." --emoji ":computer:"
 }
 
+function quit {
+	if [ -z $(pgrep -x "$1") ]; then
+		return;
+	fi
+
+	osascript -e "quit app \"$1\"" > /dev/null
+}
+
+function hide {
+	if [ -z $(pgrep -x "$1") ]; then
+		return;
+	fi
+
+	osascript -e "tell application \"System Events\" to tell process \"$1\" to set visible to false" > /dev/null
+}
+
+function close-work-apps {
+	quit "Slack"
+	quit "Sublime Text"
+	quit "Harvest"
+	quit "Table Plus"
+	quit "Chrome"
+
+	hide "iTerm2"
+	hide "Calendar"
+	hide "Mail"
+}
+
 ###
  # Offline (Sign Off)
  #
@@ -90,4 +112,10 @@ function off {
 	slack status clear
 	slack chat send --text ":wave: Signing off for the day! $1" '#general'
 	hcl stop
+
+	read -p "Quit Common Apps? [y/n]" -n 1 -r && echo
+
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		close-work-apps
+	fi
 }
