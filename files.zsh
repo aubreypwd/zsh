@@ -27,6 +27,17 @@ function comment {
 }
 
 ###
+ # Is something WDS Coding Standards compliant?
+ #
+ # @since 6/24/2019
+ #
+ # E.g: wdscs ./
+ ##
+function wdscs {
+	phpcs --standard="WebDevStudios" "$1"
+}
+
+###
  # Compress video.
  #
  # @since Tuesday, November 6, 2018
