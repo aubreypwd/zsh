@@ -27,8 +27,12 @@ function chrome {
  #
  # @since 06-10-2019
  ##
-function wds-git {
+function wdsgh {
 	chrome "https://github.com/WebDevStudios?q=$@"
+}
+
+function wdsbb {
+	chrome "https://bitbucket.org/search?account=%7B70795a6a-eb4d-4d8e-8494-6cd5629a31a5%7D&q=$1"
 }
 
 ###
@@ -61,11 +65,11 @@ function kb {
  # @since 06-10-2019
  ##
 function google {
-	open "http://www.google.com/search?q=$@"
+	googler "$1"
 }
 
 function googl {
-	goole "$@"
+	google "$@"
 }
 
 function phpf {
