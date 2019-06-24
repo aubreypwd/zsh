@@ -62,5 +62,5 @@ function call {
 	hcl note "$1"
 	hcl unalias tmp
 	slack presence away
-	slack status edit --text "$1" --emoji ":phone:"
+	slack status edit --text "Call $1" --emoji ":phone:"
 }
