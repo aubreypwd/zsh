@@ -4,6 +4,7 @@
 
 export LESS="-F -X $LESS" # Don't pager on less.
 export MANPAGER='ul | cat -s'
+export OP_SESSION_team_webdevstudios="rw7fGvcceYcIdif5HruO9dL5KapNtDlY6jrmcSvODHc" # 1password
 
 touch "$HOME/.hushlogin" # Don't show last login message anymore.
 
