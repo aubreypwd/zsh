@@ -145,6 +145,7 @@ require-cmd "hcl" "sudo gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
 require-cmd "fzf" "brew install fzf"
 require-cmd "nativefier" "brew install nativefier"
+require-cmd "googler" "brew install googler"
 require-cmd "rainbow" "brew install python && sudo easy_install rainbow" # Colorize less.
 
 source "$loadfrom/alias.zsh"
