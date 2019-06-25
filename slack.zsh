@@ -81,7 +81,9 @@ function quit {
 }
 
 function hide {
-	if [ -z $(pgrep -x "$1") ]; then
+	running=$(pgrep -x "$1")
+
+	if [ -z "$running" ]; then
 		return;
 	fi
 
@@ -93,7 +95,7 @@ function close-work-apps {
 	quit "Sublime Text"
 	quit "Harvest"
 	quit "Table Plus"
-	quit "Chrome"
+	quit "Google Chrome"
 
 	hide "iTerm2"
 	hide "Calendar"
@@ -108,14 +110,19 @@ function close-work-apps {
  # @since 06-09-2019
  ##
 function off {
+	select yn in "Yes" "No"; do
+		case $yn in
+			Yes ) close="yes"; break;;
+			No ) close="no";;
+		esac
+	done
+
 	slack presence away
 	slack status clear
 	slack chat send --text ":wave: Signing off for the day! $1" '#general'
 	hcl stop
 
-	read -p "Quit Common Apps? [y/n]" -n 1 -r && echo
-
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+	if [ $close = "yes" ]; then
 		close-work-apps
 	fi
 }
