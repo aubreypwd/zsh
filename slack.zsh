@@ -27,7 +27,26 @@ function here {
  ##
 function back {
 	here
-	hcl stop
+
+	if [ "--from-break" = $1 -o "-fb" = $1 -o "break" = $1 -o "-b" = $1 ]; then
+		slack chat send --text ":back:" '#general'
+	fi
+}
+
+###
+ # When I am away e.g. lunch, not a break.
+ #
+ # @since 7/18/2019
+ ##
+function on-break {
+	slack presence away
+	afk
+
+	if [ "" = $1 ]; then
+		return
+	fi
+
+	slack chat send --text "$1" '#general'
 }
 
 ###
@@ -38,13 +57,7 @@ function back {
  # @since 06-09-2019
  ##
 function afk {
-	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
-	hcl start @tmp
-
-	hcl note "AFK $1."
-	hcl unalias tmp
 	slack presence away
-
 	slack status edit --text "AFK $1" --emoji ":brb:"
 }
 
@@ -96,6 +109,7 @@ function close-work-apps {
 	quit "Harvest"
 	quit "Table Plus"
 	quit "Google Chrome"
+	quit "Tick Tick"
 
 	hide "iTerm2"
 	hide "Calendar"
@@ -110,19 +124,12 @@ function close-work-apps {
  # @since 06-09-2019
  ##
 function off {
-	select yn in "Yes" "No"; do
-		case $yn in
-			Yes ) close="yes"; break;;
-			No ) close="no";;
-		esac
-	done
-
 	slack presence away
 	slack status clear
 	slack chat send --text ":wave: Signing off for the day! $1" '#general'
 	hcl stop
 
-	if [ $close = "yes" ]; then
+	if [ $2 = "quit" -o $1 = "quit" ]; then
 		close-work-apps
 	fi
 }

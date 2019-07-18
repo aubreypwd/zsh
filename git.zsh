@@ -1,5 +1,6 @@
 #!/usr/local/bin/zsh
 
+
 ###
  # Push Current Branch
  #
@@ -14,7 +15,7 @@ function p {
  #
  # @since 7/6/17
  ##
-function fetch {
+function git-fetch {
 	git fetch --all
 }
 
@@ -53,7 +54,7 @@ function log {
 		if [ "$1" -gt 0 ]; then
 			git log -n "$1" --oneline
 		else
-			lines="$LINES-10" # Just under the current lines of the window.
+			local lines="$LINES-10" # Just under the current lines of the window.
 			git log -n "$lines" --oneline
 		fi
 	fi
@@ -97,9 +98,13 @@ function git-delete-tag {
  # @since 5/15/17
  ##
 function branch {
-	local branches branch
-	branches=$(git branch -a) &&
-	branch=$(echo "$branches" | fzf +s +m -e) &&
-	cmd=$(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+	local branches=$(git branch -a) &&
+	local branch=$(echo "$branches" | fzf +s +m -e) &&
+	local cmd=$(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+
+	if [ -z "$cmd" ]; then
+		return
+	fi
+
 	git checkout "$cmd"
 }

@@ -14,13 +14,9 @@
  # @since 06-09-2019
  ##
 function morning {
-	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
-	hcl start @tmp
-	hcl note "Morning Chores: Checking E-mail, schedule, following up on tasks. $1"
-	hcl unalias tmp
 	slack presence active
-	slack status edit --text "Morning Chores $1" --emoji ":sunny:"
-	slack chat send --text "Morning! :coffee: :cactus: :sunny: :wave:" '#general'
+	slack status edit --text "Prepping for the day $1" --emoji ":sunny:"
+	slack chat send --text ":coffee: :cactus: $1" '#general'
 }
 
 ###
@@ -62,5 +58,5 @@ function call {
 	hcl note "$1"
 	hcl unalias tmp
 	slack presence away
-	slack status edit --text "Call $1" --emoji ":phone:"
+	slack status edit --text "On a Call $1" --emoji ":phone:"
 }

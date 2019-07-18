@@ -134,11 +134,12 @@ function require-cmd {
 
 require-cmd "brew" "install-homebrew"
 require-cmd "ffmpeg" "brew install ffmpeg"
-require-cmd "git" "brew install git"
+require-cmd "curl" "brew install curl"
+# require-cmd "git" "brew install git" # These have wrappers, so can't do it this way.
 require-cmd "svn" "brew install subversion"
 require-cmd "trash" "brew install trash-cli"
 require-cmd "trash-empty" "brew install trash-cli"
-require-cmd "wp" "brew install wp-cli"
+#require-cmd "wp" "brew install wp-cli" # These have wrappers, so can't do it this way.
 require-cmd "youtube-dl" "brew install youtube-dl"
 require-cmd "composer" "brew install composer"
 require-cmd "hcl" "sudo gem install hcl && hcl config -r"
@@ -162,3 +163,4 @@ source "$loadfrom/macos.zsh"
 source "$loadfrom/nativefier.zsh"
 source "$loadfrom/services.zsh"
 source "$loadfrom/composer.zsh"
+source "$loadfrom/url-tail.zsh"

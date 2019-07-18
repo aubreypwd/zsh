@@ -12,20 +12,8 @@
  # @since 6/21/16
  ##
 function debug {
-	if [ '--help' = "$1" ]; then
-		echo "Usage: wp-debug [--reset]"
-		return;
-	fi
-
-	if [ '--reset' = "$1" ]; then
-		if [ -e ./debug.log ]; then
-
-			# Delete the debug.log file first.
-			trash ./debug.log
-
-			# Create a new empty file.
-			touch ./debug.log
-		fi;
+	if [[ ! $(pwd) == *"content"* ]]; then
+		echo "Not in wp-content." && return
 	fi
 
 	if ! [ -e ./debug.log ]; then
@@ -33,6 +21,8 @@ function debug {
 	fi
 
 	clear && rainbow --red="error|Fatal|fatal|Error|PHP\s Fatal|WordPress\sdatabase\serror" --yellow="warning|PHP\sWarning|PHP\sNotice" --magenta="line\s[0-9]+" --green="\/Users\/.*\.php" --blue="^\[.*\]" tail -f debug.log
+
+	rm "debug.log"
 }
 
 ###
@@ -84,13 +74,16 @@ function wp-db-pass {
  ##
 function wp-db-export-gz {
 	echo "Exporting SQL..."
-	sqlfile=$(wp db export --porcelain)
+	local sqlfile=$(wp db export --porcelain)
 
 	echo "Compressing $sqlfile..."
 	gzip "$sqlfile"
 
 	echo "Adding Comment: $1..."
 	comment "$sqlfile.gz" "$1"
+
+	echo "Restarting MySql..."
+	s db r
 }
 
 ###
@@ -105,10 +98,58 @@ function wp-db-import-gz {
 	gunzip "$1"
 
 	echo "Importing $sqlfile..."
-	noext=$(echo "$1" | cut -f 1 -d '.')
-	sqlfile="$noext.sql"
+	local noext=$(echo "$1" | cut -f 1 -d '.')
+	local sqlfile="$noext.sql"
 	wp db import "$sqlfile"
 
 	echo "Re-compressing $sqlfile > $1"
 	gzip "$sqlfile"
+
+	echo "Restarting MySql..."
+	s db r
+}
+
+###
+ # Wrapper for wp-cli
+ #
+ # This adds a wrapper around wp so we can do custom commands like
+ # wp db import-gz, etc.
+ #
+ # @since 6/25/2019
+ ##
+function wp__ {
+
+	# wp debug
+	if [ "debug" = "$1" ]; then
+		debug
+		return
+	fi
+
+	# wp db pass
+	if [ "db" = "$1" -a "pass" = "$2" ]; then
+		wp-db-pass
+		return
+	fi
+
+	# wp db importgz <file>
+	if [ "db" = "$1" -a "import-gz" = "$2" ]; then
+		local file="$3"
+
+		if [ ${file: -3} = ".gz" ]; then
+			wp-db-import-gz "$file"
+		else
+			/usr/local/bin/wp db import "$file" # Try and import the old way.
+		fi
+
+		return
+	fi
+
+	# wp db exportgz
+	if [ "db" = "$1" -a "export-gz" = "$2" ]; then
+		wp-db-export-gz
+		return
+	fi
+
+	# Use default wp for commands.
+	/usr/local/bin/wp "$@"
 }

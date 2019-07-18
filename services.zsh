@@ -18,8 +18,9 @@ function s {
 	fi
 
 	# s r all
-	if [ "all" = "$3" ]; then
+	if [ "all" = "$1" ]; then
 		brew services restart --all
+		valet restart
 		return;
 	fi
 
@@ -61,5 +62,5 @@ function s {
 		return;
 	fi
 
-	echo "s [php, db] [start, stop, restart]"
+	echo "s [php, db, all] [start, stop, restart]"
 }

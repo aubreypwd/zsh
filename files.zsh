@@ -156,3 +156,8 @@ function dir {
 		cd "wp-content" || return
 	fi
 }
+
+function site {
+	cd "$HOME/Valet" || return
+	dir
+}
