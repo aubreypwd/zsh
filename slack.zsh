@@ -31,6 +31,8 @@ function back {
 	if [ "--from-break" = $1 -o "-fb" = $1 -o "break" = $1 -o "-b" = $1 ]; then
 		slack chat send --text ":back:" '#general'
 	fi
+
+	downtime "Back to computer, getting back on a task. $1"
 }
 
 ###
@@ -59,6 +61,7 @@ function on-break {
 function afk {
 	slack presence away
 	slack status edit --text "AFK $1" --emoji ":brb:"
+	downtime "AFK $1"
 }
 
 ###
