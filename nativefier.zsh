@@ -30,7 +30,13 @@ function install-natified-apps {
 	nativefier -n "iHeart Radio" -i $(install-app-get-icon "https://www.androidpolice.com/wp-content/uploads/2017/01/nexus2cee_iheart-radio-round-icon.png") --flash --internal-urls "(.*?)(facebook\.com|www\.facebook\.com/|www.iheart\.com)(.*?)" "https://www.iheart.com/my/stations/" "$native_install_dir"
 
 	# Bandcamp
-	nativefier -i $(install-app-get-icon "https://www.shareicon.net/download/2017/03/29/881762_audio_512x512.png") -n "Bandcamp" "https://bandcamp.com/aubreypwd/following/artists_and_labels" "$native_install_dir"
+	nativefier -n "Bandcamp" -i $(install-app-get-icon "https://www.shareicon.net/download/2017/03/29/881762_audio_512x512.png") "https://bandcamp.com/aubreypwd/following/artists_and_labels" "$native_install_dir"
+
+	# Google Voice
+	nativefier -n "Google Voice" -i $(install-app-get-icon "https://lh3.googleusercontent.com/bYC5b3iqlamVWBCjGVuoDD4K0lv1q4QDXlpQoGWuFCOQGzHkoAUDNsUUO0Jkfuz7Yw") "https://voice.google.com/messages" "$native_install_dir"
+
+	# Google Calendar
+	nativefier -n "Google Calendar" "https://calendar.google.com" "$native_install_dir"
 
 	touch "$installed_file" # Flagged as installed.
 	echo "Done!"
@@ -41,5 +47,5 @@ if [ ! -e "$installed_file" ]; then
 fi
 
 function update-natified-apps {
-	install-apps
+	install-natified-apps
 }

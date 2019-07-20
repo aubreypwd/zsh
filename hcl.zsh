@@ -30,13 +30,11 @@ function education {
 function downtime {
 	hcl alias tmp 18928174 10776656
 	hcl start @tmp
+	hcl unalias tmp
 
 	if [ $1 != "" ]; then
 		hcl note "$1"
 	fi
-
-	hcl unalias tmp
-	here
 }
 
 function non-billable {
