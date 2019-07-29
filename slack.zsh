@@ -24,12 +24,23 @@ function here {
 ###
  # Away from Keyboard
  #
+ # E.g.:
+ #
+ # afk (Set status only)
+ # afk "foo" (Set status with message)
+ # afk "foo" -a (Announce on Slack)
+ #
  # @since 06-09-2019
  ##
 function afk {
 	slack presence away
 	slack status edit --text "AFK $1" --emoji ":brb:"
 	# downtime "AFK $1" # Greg says I don't have to track this.
+
+	# away -a (Announce on Slack)
+	if [[ "$@" = *"-a"* ]]; then
+		slack chat send --text "AFK $1" '#general'
+	fi
 }
 
 ###
@@ -72,3 +83,7 @@ function off {
 		close-work-apps
 	fi
 }
+
+	function offline {
+		off "$@"
+	}
