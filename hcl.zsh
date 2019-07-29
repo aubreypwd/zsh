@@ -24,19 +24,31 @@ function education {
 }
 
 	function edu {
-		education $@
+		education "$@"
 	}
 
+###
+ # Track Downtime
+ #
+ # @since 7/29/2019
+ ##
 function downtime {
 	hcl alias tmp 18928174 10776656
 	hcl start @tmp
 	hcl unalias tmp
 
-	if [ $1 != "" ]; then
-		hcl note "$1"
+	if [ "$1" = "" ]; then
+		return
 	fi
+
+	hcl note "$1"
 }
 
+###
+ # Track non-billable time.
+ #
+ # @since 7/29/2019
+ ##
 function non-billable {
 	hcl alias tmp 18928174 10776710
 	hcl start @tmp
@@ -46,9 +58,14 @@ function non-billable {
 }
 
 	function nb {
-		non-billable $@
+		non-billable "$@"
 	}
 
+###
+ # Morning Chores
+ #
+ # @since 7/29/2019
+ ##
 function morning {
 	slack presence active
 	slack status edit --text "Prepping for the day $1" --emoji ":sunny:"
@@ -58,6 +75,11 @@ function morning {
 	hcl note "Morning chores, emails, task catchup, etc."
 }
 
+###
+ # Computer Stuff
+ #
+ # @since 7/29/2019
+ ##
 function computer {
 	hcl alias tmp 18928174 10776709
 	hcl start @tmp
@@ -66,10 +88,25 @@ function computer {
 	here
 }
 
+###
+ # Note something in current task.
+ #
+ # @since 7/29/2019
+ ##
 function note {
+
+	# note "Something" (Adds a note to Harvest)
 	hcl note "$1"
 }
 
+###
+ # On a Call
+ #
+ # Starts a default timer with internal activities,
+ # but you can change later.
+ #
+ # @since 7/29/2019
+ ##
 function call {
 	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
 	hcl start @tmp
