@@ -21,14 +21,19 @@ function here {
 	fi
 }
 
+	function back {
+		here "$@"
+	}
+
 ###
  # Away from Keyboard
  #
  # E.g.:
  #
- # afk (Set status only)
- # afk "foo" (Set status with message)
- # afk "foo" -a (Announce on Slack)
+ #     afk          (Set status only)
+ #     afk "foo"    (Set status with message)
+ #     afk -a       (Set status and announce on Slack)
+ #     afk "foo" -a (Announce on Slack)
  #
  # @since 06-09-2019
  ##
@@ -56,11 +61,22 @@ function working {
 ###
  # Do not disturb.
  #
+ # E.g.:
+ #
+ #     dnd          (Set status only)
+ #     dnd "foo"    (Set status with message)
+ #     dnd -a       (Announce on Slack)
+ #     dnd "bar" -a (Set status w/ message and announce on Slack)
+ #
  # @since 06-09-2019
  ##
 function dnd {
 	slack presence away
 	slack status edit --text "Do not disturb $1, responses will be delayed until I'm done." --emoji ":computer:"
+
+	if [[ "$@" = *"-a"* ]]; then
+		slack chat send --text "Going DND $1, responses will be delayed until I'm done." '#general'
+	fi
 }
 
 ###
@@ -75,7 +91,7 @@ function off {
 
 	# off -a (Announce on Slack)
 	if [[ "$@" = *"-a"* ]]; then
-		slack chat send --text ":wave: Signing off! $1" '#general'
+		slack chat send --text ":wave: Signing off!" '#general'
 	fi
 
 	# off -q (Quit Apps)

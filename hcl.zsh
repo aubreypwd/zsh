@@ -28,20 +28,25 @@ function education {
 	}
 
 ###
- # Track Downtime
+ # Stop timer.
+ #
+ # E.g: stop
  #
  # @since 7/29/2019
  ##
-function downtime {
-	hcl alias tmp 18928174 10776656
-	hcl start @tmp
-	hcl unalias tmp
+function stop {
+	hcl stop
+}
 
-	if [ "$1" = "" ]; then
-		return
-	fi
-
-	hcl note "$1"
+###
+ # Resume last timer.
+ #
+ # E.g: resume
+ #
+ # @since 7/29/2019
+ ##
+function resume {
+	hcl resume
 }
 
 ###
@@ -69,10 +74,13 @@ function non-billable {
 function morning {
 	slack presence active
 	slack status edit --text "Prepping for the day $1" --emoji ":sunny:"
-	slack chat send --text ":coffee: :cactus: $1" '#general'
 	hcl alias tmp 18928174 10776708
 	hcl start @tmp
 	hcl note "Morning chores, emails, task catchup, etc."
+
+	if [[ "$@" = *"-a"* ]]; then
+		slack chat send --text ":coffee: :cactus: $1" '#general'
+	fi
 }
 
 ###
@@ -112,7 +120,32 @@ function call {
 	hcl start @tmp
 	hcl note "$1"
 	hcl unalias tmp
-
 	slack presence away
 	slack status edit --text "On a Call $1" --emoji ":phone:"
+}
+
+	###
+	 # Chatting
+	 #
+	 # E.g: chat "<note>"
+	 #
+	 # @since 8/14/2019
+	 ##
+	function chat {
+		call "$@"
+	}
+
+###
+ # Downtime, e.g. in-between tasks.
+ #
+ # E.g: downtime
+ #
+ # @since 8/14/2019
+ ##
+function downtime {
+	hcl alias tmp 18928174 10776656
+	hcl start @tmp
+	hcl note "Downtime, switching tasks..."
+	hcl unalias tmp
+	here
 }
