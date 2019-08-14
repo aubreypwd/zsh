@@ -14,6 +14,7 @@
 # 18928174 10776710	WDS Internal - Internal Activities - Other Internal projects
 # 18928174 10797281	WDS Internal - Internal Activities - Peer Performance Reviews
 # 18928174 10776656	WDS Internal - Internal Activities - Task switching
+# 19351006 11053798	WD3, LLC - Scoping/Estimating - Scoping/Estimating for Sales
 
 function education {
 	hcl alias tmp 18928174 10776659
@@ -25,6 +26,25 @@ function education {
 
 	function edu {
 		education "$@"
+	}
+
+###
+ # Scopes & Estimates
+ #
+ # E.g: estimating
+ #
+ # @since 8/14/2019
+ ##
+function estimating {
+	hcl alias tmp 19351006 11053798
+	hcl start @tmp
+	hcl note "$1"
+	hcl unalias tmp
+	working "$1"
+}
+
+	function estimate {
+		estimating "$@"
 	}
 
 ###
@@ -124,15 +144,23 @@ function call {
 	slack status edit --text "On a Call $1" --emoji ":phone:"
 }
 
-	###
-	 # Chatting
-	 #
-	 # E.g: chat "<note>"
-	 #
-	 # @since 8/14/2019
-	 ##
-	function chat {
-		call "$@"
+###
+ # Chatting
+ #
+ # E.g: chat "<note>"
+ #
+ # @since 8/14/2019
+ ##
+function chat {
+	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
+	hcl start @tmp
+	hcl note "$1"
+	hcl unalias tmp
+	here
+}
+
+	function chatting {
+		chat "$@"
 	}
 
 ###
