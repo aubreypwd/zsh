@@ -82,6 +82,7 @@ function close-work-apps {
 	quit "Google Chrome"
 	quit "Google Calendar"
 	quit "Mail for Gmail"
+	quit "Local by Flywheel"
+	quit "Spark"
 	hide "iTerm2"
-	hide "Spark"
 }
