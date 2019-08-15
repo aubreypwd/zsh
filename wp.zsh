@@ -14,12 +14,12 @@
  # @since 8/15/2019
  #
  # @see https://salferrarello.com/wp-cli-local-by-flywheel-without-ssh/
- #
  ##
 function wp-cli-lbf {
 	curl -O https://raw.githubusercontent.com/salcode/ssh-into-local-by-flywheel/master/wpcli-lbf-setup
 	bash wpcli-lbf-setup
 	rm -rf ./wpcli-lbf-setup
+	wp option get siteurl
 }
 
 ###
