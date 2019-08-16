@@ -15,3 +15,18 @@ function slugify {
 	function dashit {
 		slugify $@
 	}
+
+###
+ # Shorten a URL
+ #
+ # E.g: short <url>
+ #
+ # @since 8/16/2019
+ ##
+function shorten {
+	twzer sh -b "$1" | egrep -o 'https?://[^ ]+' | pbcopy
+}
+
+	function short {
+		shorten "$@"
+	}
