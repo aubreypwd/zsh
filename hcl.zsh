@@ -94,7 +94,8 @@ function non-billable {
 function morning {
 	slack presence active
 	slack status edit --text "Prepping for the day $1" --emoji ":sunny:"
-	hcl alias tmp 18928174 10776708
+
+	hcl alias tmp 18928174 10776656
 	hcl start @tmp
 	hcl note "Morning chores, emails, task catchup, etc."
 
@@ -136,7 +137,7 @@ function note {
  # @since 7/29/2019
  ##
 function call {
-	hcl alias tmp 18928174 10776708 # 18928174 10776708	WDS Internal - Internal Activities - Calls, scrum, chats, or emails
+	hcl alias tmp 18928174 10776708
 	hcl start @tmp
 	hcl note "$1"
 	hcl unalias tmp
