@@ -59,6 +59,10 @@ function announce {
 	slack chat send --text "$1" '#general'
 }
 
+	function anny {
+		announce "$@"
+	}
+
 ###
  # Working
  #
