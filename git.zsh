@@ -108,3 +108,16 @@ function branch {
 
 	git checkout "$cmd"
 }
+
+###
+ # Easy way to move tag to new spot.
+ #
+ # E.g: git-move-tag "x.x.x"
+ #
+ # @since 8/16/2019
+ ##
+function git-move-tag {
+	git-delete-tag "$1"
+	git tag "$1"
+	git push --tags
+}
