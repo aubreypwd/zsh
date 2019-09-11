@@ -23,6 +23,8 @@ function install-natified-apps {
 	nativefier -n "Youtube" -i "$native_install_dir/.icons/youtube.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://youtube.com/" "$native_install_dir"
 	nativefier -n "Google Calendar" "https://calendar.google.com" "$native_install_dir"
 	nativefier -n "Alan Watts Radio" -i "$native_install_dir/.icons/alan-watts.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://www.youtube.com/embed/fGu88738Sh8?autoplay=1" "$native_install_dir"
+	nativefier -n "Local by Flywheel Exports" -i "$native_install_dir/.icons/export.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://drive.google.com" "$native_install_dir"
+	nativefier -n "Jira" -i "$native_install_dir/.icons/jira.png" --internal-urls "(.*?)(.*\.atlassian\.net|.*\.google\.com)(.*?)" "https://webdevstudios.atlassian.net/jira/" "$native_install_dir"
 
 	touch "$installed_file" # Flagged as installed.
 	echo "Done!"

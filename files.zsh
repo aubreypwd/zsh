@@ -115,49 +115,35 @@ function youtube-mp3 {
 }
 
 ###
- # Fuzzy find directories (recursive).
+ # Similar to cd, but using fzf.
  #
- # dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]
+ # E.g: fd
  #
- # @since 6/20/2019
+ # @since Wednesday, 9/11/2019
  ##
-function dir {
-	help="dir [+string Folder you want to look at, defaults to current.] [+number The max depth, e.g. 1; left blank, defaults to unlimited.]";
-
-	if [ '--help' = "$1" ]; then
-		echo "$help" && return
-	fi
-
-	depth=""
-	pwd=$(pwd)
-	dir="$1"
-
-	if [ -z "$1" ]; then
-		dir="."
-	fi
-
-	if [ -n "$2" ]; then
-		depth="-maxdepth $2"
-	else
-		depth=""
-	fi
-
-	cd "$dir" || return
-
-	thedir=$(find . -path ./.git -prune -o -type d $depth -print 2> /dev/null | fzf +m)
-
-	if [ -z "$thedir" ]; then
-		cd "$pwd" && return
-	fi
-
-	cd "$thedir" || return
-
-	if [ -e "wp-content" ]; then
-		cd "wp-content" || return
-	fi
+function fd {
+	DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
+		&& cd "$DIR"
 }
 
+###
+ # Goto a site.
+ #
+ # E.g: valet
+ #
+ # @since Tuesday, April 23, 2019
+ ##
 function site {
-	cd "$HOME/Valet" || return
-	dir
+	fd "$HOME/Sites"
+}
+
+###
+ # Wrapper or aria2c
+ #
+ # E.g: download ["http://..."] [How many connections]
+ #
+ # @since Tuesday, May 21, 2019
+ ##
+function download {
+	aria2c -x "$2" "$1"
 }
