@@ -134,7 +134,17 @@ function fd {
  # @since Tuesday, April 23, 2019
  ##
 function site {
-	fd "$HOME/Sites"
+	cd "$HOME/Sites" || return
+	fd
+
+	if [ -e "app/public/wp-content/.git" ]; then
+		cd "app/public/wp-content" || return
+		return
+	fi
+
+	if [ -e "app/public" ]; then
+		cd "app/public" || return
+	fi
 }
 
 ###
