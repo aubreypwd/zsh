@@ -33,9 +33,9 @@ function comment {
  #
  # E.g: wdscs ./
  ##
-function wdscs {
-	phpcs --standard="WebDevStudios" "$1"
-}
+# function wdscs {
+# 	phpcs --standard="WebDevStudios" "$1"
+# }
 
 ###
  # Compress video.
@@ -53,54 +53,12 @@ function compress-video {
 ###
  # Copy the current directory path.
  #
- # E.g:  cpwd
+ # E.g:  pwdcp
  #
  # @since Wednesday, April 3, 2019
  ##
-function pwdcopy {
+function pwdcp {
 	pwd | pbcopy
-}
-
-###
- # Clear out directories where files in them don't matter.
- #
- # E.g: clear [downloads|tmp]
- #
- # @since Monday, January 14, 2019
- ##
-function empty {
-	if [ '' = "$1" ]; then
-		echo "Clear what: all, downloads, trash, tmp?"
-		return
-	fi
-
-	if [ 'tmp' = "$1" ] || [ 'all' = "$1" ]; then
-		echo "Clearing ~/tmp/*..."
-		nohup rm -Rf ~/tmp/* >/dev/null 2>&1
-
-		if [ 'all' != "$1" ]; then
-			return;
-		fi
-	fi
-
-	if [ 'downloads' = "$1" ] || [ 'all' = "$1" ]; then
-
-		echo "Clearing ~/Downloads/*..."
-		nohup rm -Rf ~/Downloads/* >/dev/null 2>&1
-
-		if [ 'all' != "$1" ]; then
-			return;
-		fi
-	fi
-
-	if [ 'trash' = "$1" ] || [ 'all' = "$1" ]; then
-		echo "Emptying Trashes..."
-		nohup trash-empty >/dev/null 2>&1
-
-		if [ 'all' != "$1" ]; then
-			return;
-		fi
-	fi
 }
 
 ###
@@ -155,5 +113,11 @@ function site {
  # @since Tuesday, May 21, 2019
  ##
 function download {
-	aria2c -x "$2" "$1"
+	if [ "" = "$2" ]; then
+		connections="1"
+	else
+		connections="$2"
+	fi
+
+	aria2c -x "$connections" "$1"
 }

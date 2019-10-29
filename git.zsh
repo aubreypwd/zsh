@@ -1,5 +1,6 @@
 #!/usr/local/bin/zsh
 
+git config --global mergetool.keepBackup false # No .orig files.
 
 ###
  # Push Current Branch
@@ -15,7 +16,7 @@ function p {
  #
  # @since 7/6/17
  ##
-function git-fetch {
+function fetch {
 	git fetch --all
 }
 
@@ -33,9 +34,17 @@ function cb {
  #
  # @since 11/22/16
  ##
-function git-delete-branch {
+function git-db {
 	git branch -D "$1" && git push origin :"$1"
 }
+
+	git-delete-branch {
+		git-db "$@"
+	}
+
+	gitdb {
+		git-db "$@"
+	}
 
 ###
  # Simple log.
@@ -43,12 +52,12 @@ function git-delete-branch {
  # @since 5/4/16 Re-written to use simple log.
  ##
 function log {
-	if [ '--help' == "$1" ]; then
+	if [ '--help' = "$1" ]; then
 		echo "Usage: git-log [string: Mode <graph>]"
 		return;
 	fi
 
-	if [ 'graph' == "$1" ]; then
+	if [ 'graph' = "$1" ]; then
 		git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	else
 		if [ "$1" -gt 0 ]; then
@@ -87,10 +96,18 @@ function modules {
  #
  # @since 12/6/2017
  ##
-function git-delete-tag {
+function git-dt {
 	git tag -d "$1"
 	git push origin :refs/tags/"$1"
 }
+
+	function git-delete-tag {
+		git-dt "$@"
+	}
+
+	function gitdt {
+		git-dt "$@"
+	}
 
 ###
  # Checkout a branch fuzzily.
@@ -121,3 +138,15 @@ function git-move-tag {
 	git tag "$1"
 	git push --tags
 }
+
+	function git-mv-tag {
+		git-move-tag "$@"
+	}
+
+	function git-mt {
+		git-move-tag "$@"
+	}
+
+	function gitmt {
+		git-move-tag "$@"
+	}

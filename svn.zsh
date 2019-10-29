@@ -9,6 +9,14 @@ function svn-remove {
 	svn status | grep '^!' | awk '{print $2}' | xargs svn rm --force
 }
 
+	function svn-rm {
+		svn-remove "$@"
+	}
+
+	function svnrm {
+		svn-remove "$@"
+	}
+
 ###
  # Add any new files to the repo.
  #
@@ -18,6 +26,10 @@ function svn-add {
 	svn status | grep '^\?' | awk '{print $2}' | xargs svn add --force
 }
 
+	function svnadd {
+		svn-add "$@"
+	}
+
 ###
  # Reset a SVN repo.
  #
@@ -26,6 +38,10 @@ function svn-add {
 function svn-reset {
 	svn revert --recursive .
 }
+
+	function svnr {
+		svn-reset "$@"
+	}
 
 ###
  # Syncs trunk with a tag.
@@ -51,6 +67,10 @@ function svn-tag {
 		svn-tag --help
 	fi
 }
+
+	svnt {
+		svn-tag "$@"
+	}
 
 ###
  # Syncs a tag with trunk.
@@ -84,3 +104,15 @@ function svn-addremove {
 	svn-add
 	svn-remove
 }
+
+	function svnam {
+		svn-addremove "$@"
+	}
+
+	function svn-am {
+		svn-addremove "$@"
+	}
+
+	function svn-add-remove {
+		svn-addremove "$@"
+	}

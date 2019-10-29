@@ -17,18 +17,6 @@ touch "$HOME/.hushlogin" # Don't show last login message anymore.
 loadfrom="$HOME/.config/symlinked/zshrc/plugins/aubreypwd"
 
 ###
- # Install
- #
- # @since Saturday, June 8th 2019
- ##
-function install {
-	# brew install aria2 git node wp-cli trash subversion php@7.1 php@7.2 php@7.3 fzf slack-cli
-	# brew cask install
-	# npm install -g nativefier
-	# brew install git wp-cli trash git ffmpeg
-}
-
-###
  # Reload Config
  #
  # E.g: reload
@@ -74,34 +62,6 @@ function x {
  ##
 function home {
 	cd "$HOME"
-}
-
-###
- # Maybe x
- #
- # E.g: maybe-x x
- #
- # But mostly used in commands that should exit right after, e.g.:
- #
- #    function test {
- #        echo "I am a script"
- #        maybe-x "$@"
- #    }
- #
- # So, when they enter:
- #
- #     test x
- #
- # ...it will echo out the string, then immediately exit.
- #
- # @since 06-09-2019
- #
- # @TODO Remove this guy, not using anymore.
- ##
-function maybe-x {
-	if [ 'x' = "$1" ]; then
-		exit
-	fi
 }
 
 ###

@@ -15,12 +15,24 @@
  #
  # @see https://salferrarello.com/wp-cli-local-by-flywheel-without-ssh/
  ##
-function wp-cli-lbf {
+function install-cli {
 	curl -O https://raw.githubusercontent.com/salcode/ssh-into-local-by-flywheel/master/wpcli-lbf-setup
 	bash wpcli-lbf-setup
 	rm -rf ./wpcli-lbf-setup
 	wp option get siteurl
 }
+
+	function wp-cli-lbf {
+		install-cli "$@"
+	}
+
+	function wp-install-cli {
+		install-cli "$@"
+	}
+
+	function installcli {
+		install-cli "$@"
+	}
 
 ###
  # Watch debug.log
@@ -48,7 +60,7 @@ function debug {
  #
  # @since 4/5/16
  ##
-function wp-apply-patch {
+function apply-patch {
 	curl -k "$1" | patch -p0
 }
 
@@ -59,7 +71,7 @@ function wp-apply-patch {
  #
  # @since Monday, April 1, 2019
  ##
-function wp-make-patch {
+function make-patch {
 	git diff --no-prefix master..HEAD > "$1".patch
 }
 
@@ -80,6 +92,10 @@ function wp-db-pass {
 	echo "Changing all users' passwords to 'password'..."
 	wp db query "UPDATE $table SET user_pass = '5f4dcc3b5aa765d61d8327deb882cf99';"
 }
+
+	function wpdbpass {
+		wp-db-pass "$@"
+	}
 
 ###
  # Export wp db export into a .gz file and leave a comment on the file.
