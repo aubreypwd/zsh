@@ -68,7 +68,7 @@ function svn-tag {
 	fi
 }
 
-	svnt {
+	function svnt {
 		svn-tag "$@"
 	}
 

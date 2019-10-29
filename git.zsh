@@ -38,11 +38,11 @@ function git-db {
 	git branch -D "$1" && git push origin :"$1"
 }
 
-	git-delete-branch {
+	function git-delete-branch {
 		git-db "$@"
 	}
 
-	gitdb {
+	function gitdb {
 		git-db "$@"
 	}
 
