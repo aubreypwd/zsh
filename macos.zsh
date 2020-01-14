@@ -41,6 +41,19 @@ defaults write com.dteoh.SlowQuitApps invertList -bool YES # Make whitelist a bl
 defaults write com.dteoh.SlowQuitApps delay -int 1000 # On whitelisted apps, quit after 3 seconds
 defaults write com.apple.screencapture location "$screenshots_dir"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+defaults write com.apple.Finder QuitMenuItem 1 # Add quit to Finder
 
 # Done
 echo "MacOS default flags configured, you may need to restart!"
+
+function beep {
+	osascript -e beep
+}
+
+	function b {
+		beep
+	}
+
+		function d {
+			say "Done"
+		}
