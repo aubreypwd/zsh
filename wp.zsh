@@ -142,46 +142,25 @@ function wp-db-import-gz {
 }
 
 ###
- # Wrapper for wp-cli
+ # Use a specific WP Database.
  #
- # This adds a wrapper around wp so we can do custom commands like
- # wp db import-gz, etc.
+ # E.g: usedb "production" or usedb "local"
  #
- # @since 6/25/2019
+ # @since Tuesday, 1/14/2020
  ##
-function wp__ {
-
-	# wp debug
-	if [ "debug" = "$1" ]; then
-		debug
-		return
-	fi
-
-	# wp db pass
-	if [ "db" = "$1" -a "pass" = "$2" ]; then
-		wp-db-pass
-		return
-	fi
-
-	# wp db importgz <file>
-	if [ "db" = "$1" -a "import-gz" = "$2" ]; then
-		local file="$3"
-
-		if [ ${file: -3} = ".gz" ]; then
-			wp-db-import-gz "$file"
-		else
-			/usr/local/bin/wp db import "$file" # Try and import the old way.
-		fi
-
-		return
-	fi
-
-	# wp db exportgz
-	if [ "db" = "$1" -a "export-gz" = "$2" ]; then
-		wp-db-export-gz
-		return
-	fi
-
-	# Use default wp for commands.
-	/usr/local/bin/wp "$@"
+function use-db {
+	local db="$1"
+	wp config set DB_NAME "$1"
 }
+
+	function usedb {
+		use-db "$@"
+	}
+
+	function wpusedb {
+		use-db "$@"
+	}
+
+	function wpdbuse {
+		use-db "$@"
+	}
