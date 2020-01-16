@@ -113,8 +113,8 @@ function site {
  # @since Tuesday, May 21, 2019
  ##
 function download {
-	if [ "" = "$2" ]; then
-		connections="1"
+	if [ ""="$2" ]; then
+		connections="16"
 	else
 		connections="$2"
 	fi
