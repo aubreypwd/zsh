@@ -61,6 +61,14 @@ function pwdcp {
 	pwd | pbcopy
 }
 
+	function copydir {
+		pwdcp
+	}
+
+	function copypwd {
+		pwdcp
+	}
+
 ###
  # Download audio from a youtube video.
  #
@@ -71,6 +79,10 @@ function pwdcp {
 function youtube-mp3 {
 	youtube-dl --extract-audio --audio-format mp3 "$1"
 }
+
+	function youtube-to-mp3 {
+		youtube-mp3 "$@"
+	}
 
 ###
  # Similar to cd, but using fzf.
@@ -119,5 +131,13 @@ function download {
 		connections="$2"
 	fi
 
-	aria2c -x "$connections" "$1"
+	aria2c -x "$connections" "$1" && open ./
 }
+
+function edit-hosts {
+	sudo subl --new-window --wait /etc/hosts
+}
+
+	function hosts {
+		edit-hosts --new-window --wait "$@"
+	}
