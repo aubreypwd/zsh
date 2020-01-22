@@ -135,9 +135,9 @@ function download {
 }
 
 function edit-hosts {
-	sudo subl --new-window --wait /etc/hosts
+	sudo subl --new-window /etc/hosts
 }
 
 	function hosts {
-		edit-hosts --new-window --wait "$@"
+		edit-hosts --new-window "$@"
 	}

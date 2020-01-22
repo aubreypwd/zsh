@@ -22,6 +22,9 @@ function install-natified-apps {
 	nativefier -n "Google Voice" -i "$native_install_dir/.icons/google-voice.png" "https://voice.google.com/messages" "$native_install_dir"
 	nativefier -n "Alan Watts Radio" -i "$native_install_dir/.icons/alan-watts.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://www.youtube.com/embed/fGu88738Sh8?autoplay=1" "$native_install_dir"
 	nativefier -n "Facebook" -i "$native_install_dir/.icons/facebook.png" --internal-urls "(.*?)(.*\.messenger\.com|.*\.facebook\.com)(.*?)" "https://facebook.com" "$native_install_dir"
+	nativefier -n "Chillhop Radio" -i "$native_install_dir/.icons/chillhop.png" --internal-urls "(.*?)(.*\.chillhop\.com|.*\.facebook\.com)(.*?)" "https://chillhop.com/" "$native_install_dir"
+
+
 	# nativefier -n "Harvest Forecast" -i "$native_install_dir/.icons/harvest-forecast.png" --internal-urls "(.*?)(*.forecastapp.com)(.*?)" "https://forecastapp.com/485680/schedule/team?filter=Aubrey%20Portwood" "$native_install_dir"
 	# nativefier -n "Messenger" -i "$native_install_dir/.icons/messenger.png" --internal-urls "(.*?)(.*\.messenger\.com|.*\.facebook\.com)(.*?)" "https://www.messenger.com/login/" "$native_install_dir"
 	# nativefier -n "Youtube" -i "$native_install_dir/.icons/youtube.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://youtube.com/" "$native_install_dir"
@@ -42,3 +45,11 @@ function install-natified-apps {
 function update-natified-apps {
 	install-natified-apps
 }
+
+	function update-apps {
+		update-natified-apps
+	}
+
+	function updateapps {
+		update-natified-apps
+	}

@@ -24,9 +24,21 @@ function fetch {
  # Wrapper for copy-branch.
  #
  # @since 4/5/16
+ # @since Tuesday, 1/21/2020 Re-worked to use cwb.
  ##
 function cb {
-	git branch | grep '\*' | tr -d '* \n' | pbcopy
+	cwb | pbcopy
+}
+
+###
+ # Show the current working branch.
+ #
+ # E.g: cwb
+ #
+ # @since Tuesday, 1/21/2020
+ ##
+function cwb {
+	echo $(git branch | grep '\*' | tr -d '* \n')
 }
 
 ###
