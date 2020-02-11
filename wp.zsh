@@ -164,3 +164,56 @@ function use-db {
 	function wpdbuse {
 		use-db "$@"
 	}
+
+###
+ # Install or uninstall WDS-Coding-Standards Gobally
+ #
+ # E.g: wdscsg install|uninstall
+ #
+ # @since Tuesday, 2/11/2020
+ ##
+function wdscsg {
+	local editormsg="Remember to configure your editor."
+
+	if [ "install"="$1" ]; then
+		composer global require "webdevstudios/wds-coding-standards"
+		phpcs --config-set installed_paths "$HOME/.composer/vendor/wp-coding-standards/wpcs,$HOME/.composer/vendor/webdevstudios/wds-coding-standards/WebDevStudios"
+		npm install -g eslint@5.16.0 sass-lint "git://git@github.com:WordPress-Coding-Standards/eslint-config-wordpress.git" "$HOME/.composer/vendor/webdevstudios/wds-coding-standards/WebDevStudios/eslint-plugin-webdevstudios"
+		echo "$editormsg"
+		return
+	fi
+
+	if [ "uninstall"="$1"]; then
+		composer global remove "webdevstudios/wds-coding-standards"
+		npm rm -g eslint sass-lint eslint-plugin-webdevstudios eslint-config-wordpress
+		echo "$editormsg"
+		return
+	fi
+
+	echo "Please use install or uninstall."
+}
+
+###
+ # Install modern WDSCS Globally
+ #
+ # E.g: wdscsm install|uninstall
+ #
+ # @since Tuesday, 2/11/2020
+ ##
+function wdscsm {
+	local editormsg="Remember to configure your editor."
+
+	if [ "install"="$1" ]; then
+		composer global require webdevstudios/php-coding-standards:1.0.0-beta2
+		npm install -g @webdevstudios/js-coding-standards@1.0.0-beta1 @webdevstudios/css-coding-standards@1.0.0-beta2
+		echo "$editormsg"
+		return
+	fi
+
+	if [ "uninstall"="$1"]; then
+		composer global remove webdevstudios/php-coding-standards
+		npm remove -g @webdevstudios/js-coding-standards @webdevstudios/css-coding-standards
+		echo "$editormsg"
+		return
+	fi
+}

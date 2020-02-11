@@ -122,3 +122,6 @@ source "$loadfrom/composer.zsh"
 source "$loadfrom/node.zsh"
 source "$loadfrom/wds.zsh"
 source "$loadfrom/php.zsh"
+
+local ___pwd=$(pwd)
+echo "$___pwd"
