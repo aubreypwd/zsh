@@ -123,5 +123,6 @@ source "$loadfrom/node.zsh"
 source "$loadfrom/wds.zsh"
 source "$loadfrom/php.zsh"
 
-local ___pwd=$(pwd)
-echo "$___pwd"
+# Display first loaded dir.
+# local ___pwd=$(pwd)
+# echo "$___pwd"
