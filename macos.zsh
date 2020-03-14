@@ -18,7 +18,7 @@ fi
 # Don't update this again.
 echo "$thisfile_current_contents" > "$flagfile"
 
-screenshots_dir="$HOME/Screenshots"
+screenshots_dir="$HOME/Screenshots/Stills"
 
 if [ ! -e "$screenshots_dir" ]; then
 	mkdir "$screenshots_dir"

@@ -78,7 +78,7 @@ function make-patch {
 ###
  # Easy way to set all user's passwords to `password`.
  #
- # E.g: db-pass
+ # E.g: wp-db-pass [wp]
  #
  # @since Wednesday, April 17, 2019
  ##

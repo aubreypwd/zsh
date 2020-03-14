@@ -162,3 +162,21 @@ function git-move-tag {
 	function gitmt {
 		git-move-tag "$@"
 	}
+
+function git-put {
+	local branch=$(git branch | grep '\*' | tr -d '* \n')
+	local tobranch="$1"
+
+	echo "$branch > $tobranch";
+
+	git checkout "$tobranch"
+	git merge "$branch"
+}
+
+	function gitput {
+		git-put "$@"
+	}
+
+	function put {
+		git-put "$@"
+	}
