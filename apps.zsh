@@ -22,8 +22,9 @@ function install-natified-apps {
 	nativefier -n "Google Voice" -i "$native_install_dir/.icons/google-voice.png" "https://voice.google.com/messages" "$native_install_dir"
 	nativefier -n "Alan Watts Radio" -i "$native_install_dir/.icons/alan-watts.png" --flash  --internal-urls "(.*?)(.*\.google\.com)(.*?)" "https://www.youtube.com/embed/fGu88738Sh8?autoplay=1" "$native_install_dir"
 	nativefier -n "Chillhop Radio" -i "$native_install_dir/.icons/chillhop.png" --internal-urls "(.*?)(.*\.chillhop\.com|.*\.facebook\.com)(.*?)" "https://chillhop.com/" "$native_install_dir"
-	nativefier -n "Write.as" -i "$native_install_dir/.icons/write-as.png" --internal-urls "(.*?)(.*\.write\.as)(.*?)" "https://write.as/me/c/" "$native_install_dir"
+	nativefier -n "JazzRadio.com" -i "$native_install_dir/.icons/jazz-radio.png" --internal-urls "(.*?)(.*\.jazzradio\.com|.*\.facebook\.com)(.*?)" "https://www.jazzradio.com/#favorites" "$native_install_dir"
 
+	# nativefier -n "Write.as" -i "$native_install_dir/.icons/write-as.png" "https://write.as/" "$native_install_dir"
 	# nativefier -n "Facebook" -i "$native_install_dir/.icons/facebook.png" --internal-urls "(.*?)(.*\.messenger\.com|.*\.facebook\.com)(.*?)" "https://facebook.com" "$native_install_dir"
 	# nativefier -n "Calm Radio" -i "$native_install_dir/.icons/calmradio.png" --internal-urls "(.*?)(.*\.calmradio\.com)(.*?)" "https://calmradio.com/en/" "$native_install_dir"
 	# nativefier -n "Harvest Forecast" -i "$native_install_dir/.icons/harvest-forecast.png" --internal-urls "(.*?)(*.forecastapp.com)(.*?)" "https://forecastapp.com/485680/schedule/team?filter=Aubrey%20Portwood" "$native_install_dir"
