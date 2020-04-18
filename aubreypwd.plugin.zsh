@@ -108,6 +108,7 @@ require-cmd "fzf" "brew install fzf"
 require-cmd "nativefier" "brew install nativefier"
 require-cmd "rainbow" "brew install python && sudo easy_install rainbow" # Colorize less.
 require-cmd "npm" "brew install node@10.16.1"
+require-cmd "hub" "brew install hub"
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"

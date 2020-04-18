@@ -43,12 +43,9 @@ defaults write com.apple.screencapture location "$screenshots_dir"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 defaults write com.apple.Finder QuitMenuItem 1 # Add quit to Finder
 defaults write com.apple.dock springboard-columns -int 7 && defaults write com.apple.dock springboard-rows -int 7 # Launchpad Grid
-defaults write com.apple.Dock autohide-delay -float 99 # Set Dock to show in 99 seconds, causing it to not show anymore effecively, reset using "defaults delete com.apple.Dock autohide-delay".
+defaults write com.apple.Dock autohide-delay -float 0 # Show dock after X seconds, e.g. 99 could hide it.
 defaults write com.apple.dock showhidden -bool false # When Apps are hidden, dim them in Dock.
-killall Dock
-
-# Done
-echo "MacOS default flags configured, you may need to restart!"
+defaults write com.apple.dock static-only -bool false # Only show running apps in Dock (when set to true)
 
 function beep {
 	osascript -e beep

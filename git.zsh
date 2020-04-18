@@ -1,5 +1,6 @@
 #!/usr/local/bin/zsh
 
+eval "$(hub alias -s)" # Alias git to hub.
 git config --global mergetool.keepBackup false # No .orig files.
 
 ###
