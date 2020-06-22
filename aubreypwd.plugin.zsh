@@ -4,7 +4,6 @@
 
 export LESS="-F -X $LESS" # Don't pager on less.
 export MANPAGER='ul | cat -s'
-export OP_SESSION_team_webdevstudios="rw7fGvcceYcIdif5HruO9dL5KapNtDlY6jrmcSvODHc" # 1password
 
 touch "$HOME/.hushlogin" # Don't show last login message anymore.
 
@@ -28,7 +27,11 @@ function reload {
 		killall -KILL SystemUIServer
 	fi
 
-	source "$loadfrom/aubreypwd.plugin.zsh" && echo "Reloaded"
+	if ! [ -e "$HOME/.zshrc.secure" ]; then
+		return
+	fi
+
+	source "$HOME/.zshrc" && echo "Reloaded"
 }
 
 ###
@@ -95,7 +98,7 @@ function require-cmd {
 require-cmd "brew" "install-homebrew"
 require-cmd "ffmpeg" "brew install ffmpeg"
 require-cmd "curl" "brew install curl"
-require-cmd "git" "brew install git" # These have wrappers, so can't do it this way.
+# require-cmd "git" "brew install git" # These have wrappers, so can't do it this way.
 require-cmd "svn" "brew install subversion"
 require-cmd "trash" "brew install trash-cli"
 require-cmd "trash-empty" "brew install trash-cli"
@@ -123,6 +126,7 @@ source "$loadfrom/composer.zsh"
 source "$loadfrom/node.zsh"
 source "$loadfrom/wds.zsh"
 source "$loadfrom/php.zsh"
+source "$loadfrom/sounds.zsh"
 
 # Display first loaded dir.
 # local ___pwd=$(pwd)

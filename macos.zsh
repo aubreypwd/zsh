@@ -18,11 +18,15 @@ fi
 # Don't update this again.
 echo "$thisfile_current_contents" > "$flagfile"
 
-screenshots_dir="$HOME/Screenshots/Stills"
-
-if [ ! -e "$screenshots_dir" ]; then
-	mkdir "$screenshots_dir"
+if [ ! -e "$HOME/Pictures/Screenshots/MacOS" ]; then
+	mkdir -p "$HOME/Pictures/Screenshots/MacOS"
 fi
+
+if [ ! -e "$HOME/Pictures/Greenshot" ]; then
+	mkdir -p "$HOME/Pictures/Screenshots/Greenshot"
+	ln -sf "$HOME/Pictures/Screenshots/Greenshot" "$HOME/Pictures/Greenshot"
+fi
+
 
 ###
  # Default Flags

@@ -22,6 +22,11 @@ function install-natified-apps {
 	nativefier -n "JazzRadio.com" -i "$HOME/iCloud/Icons/jazz-radio.png" --internal-urls "(.*?)(.*\.jazzradio\.com|.*\.facebook\.com)(.*?)" "https://www.jazzradio.com/#favorites" "$native_install_dir"
 	nativefier -n "Instagram" -i "$HOME/iCloud/Icons/instagram.png" "https://instagram.com" "$native_install_dir"
 	nativefier -n "Facebook" -i "$HOME/iCloud/Icons/facebook.png" "https://facebook.com" "$native_install_dir"
+	nativefier -n "Amazon" -i "$HOME/iCloud/Icons/amazon.png" "https://amazon.com/" "$native_install_dir"
+
+	nativefier -n "Out of Milk" -i "$HOME/iCloud/Icons/oom.png" "https://www.outofmilk.com/ShoppingList.aspx?signin=1" "$native_install_dir"
+	cp -Rfva "$installed_file/*-darwin-x64/*.app" "/tmp/apps"
+
 
 	# nativefier -n "iHeart Radio" -i "$HOME/iCloud/Icons/i-heart-radio.png" --flash --internal-urls "(.*?)(facebook\.com|www\.facebook\.com/|www.iheart\.com)(.*?)" "https://www.iheart.com/my/stations/" "$native_install_dir"
 	# nativefier -n "Bandcamp" -i "$HOME/iCloud/Icons/bandcamp.png" "https://bandcamp.com/aubreypwd/following/artists_and_labels" "$native_install_dir"
