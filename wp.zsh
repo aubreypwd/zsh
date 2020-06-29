@@ -15,24 +15,12 @@
  #
  # @see https://salferrarello.com/wp-cli-local-by-flywheel-without-ssh/
  ##
-function install-cli {
+function wp-install-cli {
 	curl -O https://raw.githubusercontent.com/salcode/ssh-into-local-by-flywheel/master/wpcli-lbf-setup
 	bash wpcli-lbf-setup
 	rm -rf ./wpcli-lbf-setup
 	wp option get siteurl
 }
-
-	function wp-cli-lbf {
-		install-cli "$@"
-	}
-
-	function wp-install-cli {
-		install-cli "$@"
-	}
-
-	function installcli {
-		install-cli "$@"
-	}
 
 ###
  # Watch debug.log
@@ -61,7 +49,7 @@ function debug {
  # @since 4/5/16
  ##
 function apply-patch {
-	curl -k "$1" | patch -p0
+	curl -k "$1?format=raw" | patch -p0
 }
 
 ###

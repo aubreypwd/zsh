@@ -113,6 +113,9 @@ require-cmd "rainbow" "brew install python && sudo easy_install rainbow" # Color
 require-cmd "npm" "brew install node@10.16.1"
 require-cmd "hub" "brew install hub"
 
+# Common commands
+require-cmd "git-open" "npm install --global git-open"
+
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
 source "$loadfrom/wp.zsh"
@@ -127,6 +130,7 @@ source "$loadfrom/node.zsh"
 source "$loadfrom/wds.zsh"
 source "$loadfrom/php.zsh"
 source "$loadfrom/sounds.zsh"
+source "$loadfrom/docker.zsh"
 
 # Display first loaded dir.
 # local ___pwd=$(pwd)

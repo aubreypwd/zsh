@@ -51,14 +51,3 @@ defaults write com.apple.Dock autohide-delay -float 0 # Show dock after X second
 defaults write com.apple.dock showhidden -bool false # When Apps are hidden, dim them in Dock.
 defaults write com.apple.dock static-only -bool false # Only show running apps in Dock (when set to true)
 
-function beep {
-	osascript -e beep
-}
-
-	function b {
-		beep
-	}
-
-		function d {
-			say "Done"
-		}
