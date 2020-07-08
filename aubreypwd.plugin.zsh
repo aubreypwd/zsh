@@ -131,7 +131,3 @@ source "$loadfrom/wds.zsh"
 source "$loadfrom/php.zsh"
 source "$loadfrom/sounds.zsh"
 source "$loadfrom/docker.zsh"
-
-# Display first loaded dir.
-# local ___pwd=$(pwd)
-# echo "$___pwd"

@@ -2,6 +2,7 @@
 
 # Colorful ls.
 alias ls='ls -laGFh';
+alias c=clear
 
 # Git Tower.
 alias tower='gittower'
