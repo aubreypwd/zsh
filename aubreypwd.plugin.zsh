@@ -81,7 +81,7 @@ function install-homebrew {
 ###
  # Require a command (and install if missing).
  #
- # E.g: require "git" "brew install git"
+ # E.g: require "git" "brew reinstall git"
  #
  # @since Sun June 9th 2019
  ##
@@ -96,22 +96,24 @@ function require-cmd {
 }
 
 require-cmd "brew" "install-homebrew"
-require-cmd "ffmpeg" "brew install ffmpeg"
-require-cmd "curl" "brew install curl"
-# require-cmd "git" "brew install git" # These have wrappers, so can't do it this way.
-require-cmd "svn" "brew install subversion"
-require-cmd "trash" "brew install trash-cli"
-require-cmd "trash-empty" "brew install trash-cli"
-require-cmd "wp" "brew install wp-cli" # These have wrappers, so can't do it this way.
-require-cmd "youtube-dl" "brew install youtube-dl"
-require-cmd "composer" "brew install composer"
+# require-cmd "rbenv" "brew reinstall rbenv"
+require-cmd "ffmpeg" "brew reinstall ffmpeg"
+require-cmd "wget" "brew reinstall wget"
+require-cmd "curl" "brew reinstall curl"
+# require-cmd "git" "brew reinstall git" # These have wrappers, so can't do it this way.
+require-cmd "svn" "brew reinstall subversion"
+require-cmd "trash" "brew reinstall trash-cli"
+require-cmd "trash-empty" "brew reinstall trash-cli"
+require-cmd "wp" "brew reinstall wp-cli" # These have wrappers, so can't do it this way.
+require-cmd "youtube-dl" "brew reinstall youtube-dl"
+require-cmd "composer" "brew reinstall composer"
 require-cmd "hcl" "sudo gem install hcl && hcl config -r"
-require-cmd "slack" "brew tap rockymadden/rockymadden && brew install rockymadden/rockymadden/slack-cli && slack init"
-require-cmd "fzf" "brew install fzf"
-require-cmd "nativefier" "brew install nativefier"
-require-cmd "rainbow" "brew install python && sudo easy_install rainbow" # Colorize less.
-require-cmd "npm" "brew install node@10.16.1"
-require-cmd "hub" "brew install hub"
+require-cmd "slack" "brew tap rockymadden/rockymadden && brew reinstall rockymadden/rockymadden/slack-cli && slack init"
+require-cmd "fzf" "brew reinstall fzf"
+require-cmd "nativefier" "brew reinstall nativefier"
+require-cmd "rainbow" "brew reinstall python && sudo easy_install rainbow" # Colorize less.
+require-cmd "npm" "brew reinstall node@10.16.1"
+require-cmd "hub" "brew reinstall hub"
 
 # Common commands
 require-cmd "git-open" "npm install --global git-open"
