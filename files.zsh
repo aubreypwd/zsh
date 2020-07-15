@@ -92,9 +92,19 @@ function youtube-mp3 {
  # @since Wednesday, 9/11/2019
  ##
 function fd {
-	DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
+	local DEPTH=0
+
+	if [ -n "$1" ]; then
+		DEPTH="$1"
+	fi
+
+	local DIR=`find -L * -maxdepth $DEPTH -type d -print 2> /dev/null | fzf-tmux` \
 		&& cd "$DIR"
 }
+
+	function fdd {
+		fd 50
+	}
 
 ###
  # Goto a site.

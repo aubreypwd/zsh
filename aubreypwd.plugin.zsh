@@ -96,27 +96,31 @@ function require-cmd {
 }
 
 require-cmd "brew" "install-homebrew"
-# require-cmd "rbenv" "brew reinstall rbenv"
 require-cmd "ffmpeg" "brew reinstall ffmpeg"
 require-cmd "wget" "brew reinstall wget"
 require-cmd "curl" "brew reinstall curl"
-# require-cmd "git" "brew reinstall git" # These have wrappers, so can't do it this way.
 require-cmd "svn" "brew reinstall subversion"
 require-cmd "trash" "brew reinstall trash-cli"
 require-cmd "trash-empty" "brew reinstall trash-cli"
-require-cmd "wp" "brew reinstall wp-cli" # These have wrappers, so can't do it this way.
+require-cmd "wp" "brew reinstall wp-cli"
 require-cmd "youtube-dl" "brew reinstall youtube-dl"
 require-cmd "composer" "brew reinstall composer"
-require-cmd "hcl" "sudo gem install hcl && hcl config -r"
+require-cmd "hcl" "gem install hcl && hcl config -r"
 require-cmd "slack" "brew tap rockymadden/rockymadden && brew reinstall rockymadden/rockymadden/slack-cli && slack init"
 require-cmd "fzf" "brew reinstall fzf"
 require-cmd "nativefier" "brew reinstall nativefier"
 require-cmd "rainbow" "brew reinstall python && sudo easy_install rainbow" # Colorize less.
 require-cmd "npm" "brew reinstall node@10.16.1"
-require-cmd "hub" "brew reinstall hub"
-
-# Common commands
+require-cmd "git" "brew reinstall git"
+require-cmd "hcl" "gem install hcl"
 require-cmd "git-open" "npm install --global git-open"
+require-cmd "watch" "brew reinstall watch"
+
+if ! [ -e "/usr/local/opt/openssl@1.1/bin/openssl" ]; then
+	brew reinstall openssl
+fi
+
+# require-cmd "git" "brew reinstall git" # These have wrappers, so can't do it this way.
 
 source "$loadfrom/alias.zsh"
 source "$loadfrom/git.zsh"
