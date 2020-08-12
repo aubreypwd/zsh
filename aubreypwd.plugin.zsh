@@ -115,6 +115,7 @@ require-cmd "git" "brew reinstall git"
 require-cmd "hcl" "gem install hcl"
 require-cmd "git-open" "npm install --global git-open"
 require-cmd "watch" "brew reinstall watch"
+require-cmd "python" "brew reinstall python"
 
 if ! [ -e "/usr/local/opt/openssl@1.1/bin/openssl" ]; then
 	brew reinstall openssl
