@@ -1,5 +1,8 @@
 #!/usr/local/bin/zsh
 
+chflags hidden "$HOME/Applications"
+chflags nohidden "$HOME/Library"
+
 ###
  # File Operations
  #
@@ -119,11 +122,13 @@ function site {
 
 	if [ -e "app/public/wp-content/.git" ]; then
 		cd "app/public/wp-content" || return
+		shell
 		return
 	fi
 
 	if [ -e "app/public" ]; then
 		cd "app/public" || return
+		shell
 	fi
 }
 
