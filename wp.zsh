@@ -6,6 +6,50 @@
  # @since Saturday, June 8th 2019
  ##
 
+function shell {
+	local shell_files=(
+		"./.shellfile"
+		"../.shellfile"
+		"../../.shellfile"
+		"../../../.shellfile"
+		"../../../../.shellfile"
+
+		"./.shell"
+		"../.shell"
+		"../../.shell"
+		"../../../.shell"
+		"../../../../.shell"
+
+		"./.shell-file"
+		"../.shell-file"
+		"../../.shell-file"
+		"../../../.shell-file"
+		"../../../../.shell-file"
+
+		"./.shell_file"
+		"../.shell_file"
+		"../../.shell_file"
+		"../../../.shell_file"
+		"../../../../.shell_file"
+
+		"./.local"
+		"../.local"
+		"../../.local"
+		"../../../.local"
+		"../../../../.local"
+	)
+
+	for shell_file in "${shell_files[@]}"
+	do
+		if [ -f $shell_file ]; then
+			local runtime=$(cat $shell_file)
+			echo "Loading $runtime..."
+			source $runtime
+			return
+		fi
+	done
+}
+
 ###
  # Sets up Local by Flywheel to use wp externally.
  #
