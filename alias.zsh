@@ -8,7 +8,7 @@ alias c=clear
 alias tower='gittower'
 
 # Composer stuffs.
-alias cu="composer-uninstall"
+alias cu="composer uninstall"
 alias ci="composer install --prefer-source"
 alias cid="composer install --prefer-dist"
 alias cri="composer-reinstall --prefer-source"
