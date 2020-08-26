@@ -4,6 +4,9 @@ mkdir -p "$HOME/Applications/Nativefied"
 
 local_native_install_dir="$HOME/Applications/Nativefied"
 
+# Hide Dock Icons
+# /usr/libexec/PlistBuddy -c 'Add :LSUIElement bool true' /Applications/zoom.us.app/Contents/Info.plist &> /dev/null
+
 ###
  # Nativefy an app.
  #
@@ -16,8 +19,14 @@ function nativefy {
 	local url="$2"
 	local internal_urls="$4"
 	local icon="$3"
-
 	local extra_flags="$5 $6 $7 $8 $9"
+
+	echo "Flags: $extra_flags"
+
+	local folder="/tmp/$name-darwin-x64"
+	local dot_app_folder="$folder/$name.app"
+	local root_app="/Applications/$name.app"
+	local local_app="$local_native_install_dir/$name-darwin-x64"
 
 	local flags="--flash"
 
@@ -29,24 +38,14 @@ function nativefy {
 		flags="$flags -i \"$icon\""
 	fi
 
-	local nativefier=$(which nativefier)
-
-	local folder="/tmp/$name-darwin-x64"
-
 	local cmd="nativefier -n \"$name\" $flags \"$url\" \"/tmp\" $extra_flags"
 
 	echo "\nRunning: $cmd\n"
-
 	eval $cmd
-
-	local dot_app_folder="$folder/$name.app"
-	local root_app="/Applications/$name.app"
 
 	if [ -d "$root_app" ]; then
 		delete "$root_app"
 	fi
-
-	local local_app="$local_native_install_dir/$name-darwin-x64"
 
 	if [ -d "$local_app" ]; then
 		delete "$local_app" # Delete the old school one.
@@ -56,13 +55,37 @@ function nativefy {
 	comment "/Applications/$name.app" "Nativefied"
 }
 
+	###
+	 # Install natified apps to /Applications.
+	 #
+	 # E.g: nativefy-apps
+	 #
+	 # @since Wednesday, 8/12/2020
+	 ##
 	function nativefy-apps {
+
+		# Setup CSS files in /tmp for injecting later.
+		echo "header > *:first-child { margin-left: 66px }" > /tmp/header-margin-left.css
+		echo "header > *:first-child { position: relative; left: 66px; }" > /tmp/header-position-left.css
+		echo "body { -webkit-app-region: drag; }" > /tmp/body-draggable.css
+		echo "header { -webkit-app-region: drag; }" > /tmp/header-draggable.css
+		echo "$(cat /tmp/header-position-left.css) $(cat /tmp/header-draggable.css)" > /tmp/header-position-left-draggable.css
+		echo "$(cat /tmp/header-margin-left.css) $(cat /tmp/header-draggable.css)" > /tmp/header-margin-left-draggable.css
+
+		# Some easily injectible flags.
+		local hidden_titlebar="--title-bar-style hidden --hide-window-frame"
+		local inset_titlebar="--title-bar-style hiddenInset --hide-window-frame"
+
 		npm install -g nativefier # Update nativefier
 
-		nativefy "Harvest Forecast" "https://forecastapp.com/485680/schedule/team?filter=portwood" "$HOME/iCloud/Icons/harvest-forecast.png" ".*(google|harvest|forecast).*"
-		nativefy "RETROWAVE Radio" "https://retrowave.ru/" "$HOME/iCloud/Icons/retrowave-radio.png" "" --width="677" --height="837"
-		nativefy "Poolside.fm" "https://poolside.fm/" "$HOME/iCloud/Icons/poolside.png" "" --width="355" --height="460"
-		nativefy "Google Voice" "https://voice.google.com/messages" "$HOME/iCloud/Icons/google-voice.png" "" --flash
+		###
+		 # Apps
+		 ##
+		nativefy "Local by Flywheel Backups" "https://drive.google.com/drive/my-drive" "$HOME/iCloud/Icons/lbf.png" "(.*?drive\.google\.com.*?|.*?accounts\.google\.com.*?)" "$hidden_titlebar" --inject=/tmp/header-draggable.css --user-agent "\"Mozilla/5.0 (Windows NT 10.0; rv:74.0) Gecko/20100101 Firefox/74.0\""
+		nativefy "USAA" "https://www.usaa.com/inet/ent_home/CpHome?action=INIT&action=INIT&wa_ref=pri_auth_nav_home" "$HOME/iCloud/Icons/usaa.png" "" --width="970" --height="868" "$hidden_titlebar" --inject=/tmp/header-position-left-draggable.css
+		nativefy "Google Voice" "https://voice.google.com/messages" "$HOME/iCloud/Icons/google-voice.png" "" "$hidden_titlebar" --inject=/tmp/header-draggable.css
+		nativefy "Harvest Forecast" "https://forecastapp.com/485680/schedule/team?filter=portwood" "$HOME/iCloud/Icons/harvest-forecast.png" ".*(google|harvest|forecast).*" "$inset_titlebar" --inject=/tmp/header-position-left-draggable.css
+		nativefy "RETROWAVE Radio" "https://retrowave.ru/" "$HOME/iCloud/Icons/retrowave-radio.png" "" --width="677" --height="837" "$inset_titlebar" --inject=/tmp/body-draggable.css
 	}
 
 ###
