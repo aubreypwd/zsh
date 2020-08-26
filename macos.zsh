@@ -50,4 +50,4 @@ defaults write com.apple.dock springboard-columns -int 7 && defaults write com.a
 defaults write com.apple.Dock autohide-delay -float 0 # Show dock after X seconds, e.g. 99 could hide it.
 defaults write com.apple.dock showhidden -bool false # When Apps are hidden, dim them in Dock.
 defaults write com.apple.dock static-only -bool false # Only show running apps in Dock (when set to true)
-
+defaults write com.googlecode.iterm2 "Secure Input" 0 # Tell iterm2 to allow non-secure input for escape
