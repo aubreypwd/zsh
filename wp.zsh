@@ -86,17 +86,6 @@ function debug {
 }
 
 ###
- # Applies a Trac ticket patch via a URL.
- #
- # E.g: apply-patch <the url to the trac ticket>
- #
- # @since 4/5/16
- ##
-function apply-patch {
-	curl -k "$1?format=raw" | patch -p0
-}
-
-###
  # Make a patch
  #
  # E.g: make-patch 40333

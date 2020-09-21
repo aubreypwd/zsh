@@ -69,6 +69,8 @@ function nativefy {
 		echo "header > *:first-child { position: relative; left: 66px; }" > /tmp/header-position-left.css
 		echo "body { -webkit-app-region: drag; }" > /tmp/body-draggable.css
 		echo "header { -webkit-app-region: drag; }" > /tmp/header-draggable.css
+		echo "body{overflow: hidden !important}" > /tmp/no-scrolling.css
+
 		echo "$(cat /tmp/header-position-left.css) $(cat /tmp/header-draggable.css)" > /tmp/header-position-left-draggable.css
 		echo "$(cat /tmp/header-margin-left.css) $(cat /tmp/header-draggable.css)" > /tmp/header-margin-left-draggable.css
 
@@ -81,11 +83,12 @@ function nativefy {
 		###
 		 # Apps
 		 ##
-		nativefy "Local by Flywheel Backups" "https://drive.google.com/drive/my-drive" "$HOME/iCloud/Icons/lbf.png" "(.*?drive\.google\.com.*?|.*?accounts\.google\.com.*?)" "$hidden_titlebar" --inject=/tmp/header-draggable.css --user-agent "\"Mozilla/5.0 (Windows NT 10.0; rv:74.0) Gecko/20100101 Firefox/74.0\""
+		nativefy "Local by Flywheel Backups" "https://drive.google.com/drive/my-drive" "$HOME/iCloud/Icons/lbf.ico" "(.*?drive\.google\.com.*?|.*?accounts\.google\.com.*?)" "$hidden_titlebar" --inject=/tmp/header-draggable.css --user-agent "\"Mozilla/5.0 (Windows NT 10.0; rv:74.0) Gecko/20100101 Firefox/74.0\""
 		nativefy "USAA" "https://www.usaa.com/inet/ent_home/CpHome?action=INIT&action=INIT&wa_ref=pri_auth_nav_home" "$HOME/iCloud/Icons/usaa.png" "" --width="970" --height="868" "$hidden_titlebar" --inject=/tmp/header-position-left-draggable.css
 		nativefy "Google Voice" "https://voice.google.com/messages" "$HOME/iCloud/Icons/google-voice.png" "" "$hidden_titlebar" --inject=/tmp/header-draggable.css
-		nativefy "Harvest Forecast" "https://forecastapp.com/485680/schedule/team?filter=portwood" "$HOME/iCloud/Icons/harvest-forecast.png" ".*(google|harvest|forecast).*" "$inset_titlebar" --inject=/tmp/header-position-left-draggable.css
 		nativefy "RETROWAVE Radio" "https://retrowave.ru/" "$HOME/iCloud/Icons/retrowave-radio.png" "" --width="677" --height="837" "$inset_titlebar" --inject=/tmp/body-draggable.css
+		nativefy "Chillhop Radio" "https://chillhop.com/" "$HOME/iCloud/Icons/chillhop.png" "" --width="1024" --height="868" "$inset_titlebar" --inject=/tmp/body-draggable.css
+		nativefy "Recess by Poolside.fm" "https://pressplaytopauseyourthoughts.com/" "$HOME/iCloud/Icons/recess.png" "" --width="338" --height="287" "$inset_titlebar" --inject=/tmp/body-draggable.css
 	}
 
 ###

@@ -1,16 +1,16 @@
 #!/usr/local/bin/zsh
 
 # eval "$(hub alias -s)" # Alias git to hub.
-git config --global mergetool.keepBackup false # No .orig files.
+git config --global mergetool.keepBackup false &> /dev/null # No .orig files.
 
-###
- # Push Current Branch
- #
- # @since Saturday, June 8th 2019
- ##
-function p {
-	git push origin "$(git branch|grep '\*'|tr -d '* \n')"
-}
+# ###
+#  # Push Current Branch
+#  #
+#  # @since Saturday, June 8th 2019
+#  ##
+# function p {
+# 	git push origin "$(git branch|grep '\*'|tr -d '* \n')"
+# }
 
 ###
  # Alias for git fetch --all.
@@ -39,7 +39,7 @@ function cb {
  # @since Tuesday, 1/21/2020
  ##
 function cwb {
-	echo $(git branch | grep '\*' | tr -d '* \n')
+	echo "$(git branch|grep '\*'|tr -d '* \n')"
 }
 
 ###
