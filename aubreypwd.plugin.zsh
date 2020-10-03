@@ -25,11 +25,5 @@ fi
 
 loadfrom="$HOME/.config/symlinked/zshrc/plugins/aubreypwd"
 
-source "$loadfrom/svn.zsh" ## Skipped
-source "$loadfrom/macos.zsh"
 source "$loadfrom/apps.zsh"
-source "$loadfrom/services.zsh"
-source "$loadfrom/node.zsh"
-source "$loadfrom/wds.zsh"
-source "$loadfrom/php.zsh"
 source "$loadfrom/sounds.zsh"
